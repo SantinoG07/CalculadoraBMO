@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.control.TextField?>
+<VBox spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controlador">
+   <children>
+      <Pane prefHeight="1920.0" prefWidth="1080.0">
+         <children>
+            <Button layoutX="580.0" layoutY="225.0" mnemonicParsing="false" text="1" textAlignment="CENTER" fx:id="btn1" onAction="#mbtn1" >
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="580.0" layoutY="255.0" mnemonicParsing="false" text="4" textAlignment="CENTER" fx:id="btn4" onAction="#mbtn4">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="632.0" layoutY="225.0" mnemonicParsing="false" text="2" textAlignment="CENTER" fx:id="btn2" onAction="#mbtn2">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="631.0" layoutY="255.0" mnemonicParsing="false" text="5" textAlignment="CENTER" fx:id="btn5" onAction="#mbtn5">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="580.0" layoutY="285.0" mnemonicParsing="false" text="7" textAlignment="CENTER" fx:id="7" onAction="#mbtn7">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="580.0" layoutY="317.0" mnemonicParsing="false" text="0" textAlignment="CENTER" fx:id="btn0" onAction="#mbtn0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="632.0" layoutY="285.0" mnemonicParsing="false" text="8" textAlignment="CENTER" fx:id="btn8" onAction="#mbtn8">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="631.0" layoutY="317.0" mnemonicParsing="false" text="," textAlignment="CENTER" fx:id="btncoma" onAction="#mbtncoma">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="684.0" layoutY="225.0" mnemonicParsing="false" text="3" textAlignment="CENTER" fx:id="btn3" onAction="#mbtn3">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="684.0" layoutY="255.0" mnemonicParsing="false" text="6" textAlignment="CENTER" fx:id="btn6" onAction="#mbtn6">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="790.0" layoutY="225.0" mnemonicParsing="false" text="DEL" textAlignment="CENTER" fx:id="btndel" onAction="#mbtndel">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="737.0" layoutY="255.0" mnemonicParsing="false" text="X" textAlignment="CENTER" fx:id="btnmult" onAction="#mbtnmult">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="684.0" layoutY="285.0" mnemonicParsing="false" text="9" textAlignment="CENTER" fx:id="btn9" onAction="#mbtn9">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="685.0" layoutY="317.0" mnemonicParsing="false" text="=" textAlignment="CENTER" fx:id="btnresultado" onAction="#mbtnresultado">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="737.0" layoutY="285.0" mnemonicParsing="false" text="+" textAlignment="CENTER" fx:id="btnsuma" onAction="#mbtnsuma">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="737.0" layoutY="317.0" mnemonicParsing="false" text="ANS" textAlignment="CENTER" fx:id="btnans" onAction="#mbtnresultado">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="737.0" layoutY="225.0" mnemonicParsing="false" text="AC" textAlignment="CENTER" fx:id="btnac" onAction="#mbtnac">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="790.0" layoutY="255.0" mnemonicParsing="false" text="÷" textAlignment="CENTER" fx:id="btndiv" onAction="#mbtndiv">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="790.0" layoutY="285.0" mnemonicParsing="false" text="-" textAlignment="CENTER" fx:id="btnmenos" onAction="#mbtnmenos">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="805.0" layoutY="40.0" mnemonicParsing="false" text="ON" textAlignment="CENTER" fx:id="btnon" onAction="#mbtnon">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <TextField layoutX="76.0" fx:id="pantalla" layoutY="117.0" prefHeight="108.0" prefWidth="256.0" promptText="Modo de operacion" editable="false"
+            style="-fx-background-color: green"/>
+            <Button layoutX="63.0" layoutY="294.0" mnemonicParsing="false" text="Vectores" textAlignment="CENTER" fx:id="vectores" onAction="#mvectores" >
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="156.0" layoutY="294.0" mnemonicParsing="false" text="Matrices" textAlignment="CENTER" fx:id="matrices" onAction="#mmatrices">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="249.0" layoutY="294.0" mnemonicParsing="false" text="Ecuaciones" textAlignment="CENTER" fx:id="ecuaciones" onAction="#mecuaciones" >
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="352.0" layoutY="294.0" mnemonicParsing="false" text="Calculos" textAlignment="CENTER" fx:id="calculos" onAction="#mcalculos" >
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+         <cursor>
+            <Cursor fx:constant="CROSSHAIR" />
+         </cursor>
+      </Pane>
+   </children>
+</VBox>
