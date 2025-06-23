@@ -7,7 +7,11 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.control.TextField?>
-<VBox spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controlador">
+<VBox spacing="10"
+      xmlns="http://javafx.com/javafx/23.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.example.Controlador"
+      stylesheets="@estilos.css">
    <children>
       <Pane prefHeight="1920.0" prefWidth="1080.0">
          <children>
