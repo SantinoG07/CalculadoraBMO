@@ -10,6 +10,8 @@ public class Controlador {
     @FXML
     private TextField display;
 
+
+
     @FXML
     public void mbtn1() {
         pantalla.setText(pantalla.getText()+1);
@@ -103,5 +105,39 @@ public class Controlador {
     }
 
     public void mbtnon() {
+    }
+
+    @FXML
+    public void initialize() {
+        pantalla.sceneProperty().addListener((obs, oldScene, newScene) -> {
+            if (newScene != null) {
+                newScene.setOnKeyPressed(event -> {
+                    switch (event.getCode()) {
+                        case DIGIT9, NUMPAD9 -> mbtn9();
+                        case DIGIT8, NUMPAD8 -> mbtn8();
+                        case DIGIT7, NUMPAD7 -> mbtn7();
+                        case DIGIT6, NUMPAD6 -> mbtn6();
+                        case DIGIT5, NUMPAD5 -> mbtn5();
+                        case DIGIT4, NUMPAD4 -> mbtn4();
+                        case DIGIT3, NUMPAD3 -> mbtn3();
+                        case DIGIT2, NUMPAD2 -> mbtn2();
+                        case DIGIT1, NUMPAD1 -> mbtn1();
+                        case ENTER -> mbtnresultado();
+                        case ESCAPE -> mbtnac();
+                        case DELETE -> mbtndel();
+
+                    };
+                    String texto = event.getText();
+                    switch (texto) {
+                        case "+" -> mbtnsuma();
+                        case "-" -> mbtnmenos();
+                        case "*" -> mbtnmult();
+                        case "/" -> mbtndiv();
+                        case "=" -> mbtnresultado();
+                        case "," -> mbtncoma();
+                    }
+                });
+            }
+        });
     }
 }
