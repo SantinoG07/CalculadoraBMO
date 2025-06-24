@@ -7,6 +7,8 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <VBox spacing="10"
       xmlns="http://javafx.com/javafx/23.0.1"
       xmlns:fx="http://javafx.com/fxml/1"
@@ -95,6 +97,8 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
+            <Label fx:id="modoleyenda" layoutX="400.0" layoutY="10.0" text="" style="-fx-text-fill: gray; -fx-font-size: 100;" />
+
             <Button layoutX="737.0" layoutY="225.0" mnemonicParsing="false" text="AC" textAlignment="CENTER" fx:id="btnac" onAction="#mbtnac">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -115,8 +119,9 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <TextField layoutX="76.0" fx:id="pantalla" layoutY="117.0" prefHeight="108.0" prefWidth="256.0" promptText="Modo de operacion" editable="false"
-            style="-fx-background-color: green"/>
+            <TextArea fx:id="subMenu" layoutX="20.0" layoutY="260.0" prefWidth="300" prefHeight="120" wrapText="true" visible="false" managed="false" style="-fx-font-size:14;"/>
+            <Label fx:id="salidadefinirmatrices" layoutX="400.0" layoutY="10.0" text="" style="-fx-text-fill: gray; -fx-font-size: 100;"/>
+            <TextField layoutX="76.0" fx:id="pantalla" layoutY="117.0" prefHeight="108.0" prefWidth="256.0" style="-fx-background-color: green"/>
             <Button layoutX="63.0" layoutY="294.0" mnemonicParsing="false" text="Vectores" textAlignment="CENTER" fx:id="vectores" onAction="#mvectores" >
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -138,9 +143,7 @@
                </font>
             </Button>
          </children>
-         <cursor>
-            <Cursor fx:constant="CROSSHAIR" />
-         </cursor>
+
       </Pane>
    </children>
 </VBox>

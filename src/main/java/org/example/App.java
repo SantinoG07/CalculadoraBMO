@@ -10,8 +10,13 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/pantalla.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pantalla.fxml"));
+        Parent root = loader.load();
         Scene scene = new Scene(root, 400, 200);
+
+        Controlador controlador = loader.getController();
+        controlador.seleccionarmatriz(scene);
+
         stage.setScene(scene);
         stage.setTitle("BMO-Calculator");
 
