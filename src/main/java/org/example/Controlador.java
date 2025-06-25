@@ -69,6 +69,7 @@ public class Controlador {
 
     private void definirMatriz(String matrizid){
         salidadefinirmatrices.setText("Definir Matriz " + matrizid + "\nIngrese la cantidad de filas:");
+
     }
 
     public void mecuaciones() {
