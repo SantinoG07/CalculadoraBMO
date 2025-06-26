@@ -127,12 +127,32 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button layoutX="156.0" layoutY="294.0" mnemonicParsing="false" text="Matrices" textAlignment="CENTER" fx:id="matrices" onAction="#mmatrices">
+            <Button layoutX="156.0" layoutY="294.0" mnemonicParsing="false" text="Matrices" textAlignment="CENTER" fx:id="btnmatrices" onAction="#mmatrices">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
             <Button layoutX="249.0" layoutY="294.0" mnemonicParsing="false" text="Ecuaciones" textAlignment="CENTER" fx:id="ecuaciones" onAction="#mecuaciones" >
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="249.0" layoutY="325.0" mnemonicParsing="false" text="VectorA" textAlignment="CENTER" fx:id="vec1" onAction="#mecuaciones" >
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="249.0" layoutY="350.0" mnemonicParsing="false" text="VectorB" textAlignment="CENTER" fx:id="vec2" onAction="#mecuaciones" >
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="249.0" layoutY="375.0" mnemonicParsing="false" text="VectorC" textAlignment="CENTER" fx:id="vec3" onAction="#mecuaciones" >
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="249.0" layoutY="400.0" mnemonicParsing="false" text="VectorD" textAlignment="CENTER" fx:id="vec4" onAction="#mecuaciones" >
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

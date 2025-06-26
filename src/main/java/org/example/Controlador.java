@@ -45,6 +45,7 @@ public class Controlador {
     private String matrizselec;
     private int fmatriz;
     private int cmatriz;
+    @FXML
     private Map<String, int[][]> matrices = new HashMap<>(); //Lo usamos para crear mas de 1 matriz y poder seleccionarlas por el id
     private int[][] matriz;
     private boolean esperandoFilas = true;
@@ -262,11 +263,4 @@ public class Controlador {
         });
     }
 
-    public boolean isEsperandoFilas() {
-        return esperandoFilas;
-    }
-
-    public void setEsperandoFilas(boolean esperandoFilas) {
-        this.esperandoFilas = esperandoFilas;
-    }
 }
