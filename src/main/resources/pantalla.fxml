@@ -120,7 +120,7 @@
                </font>
             </Button>
             <TextArea fx:id="subMenu" layoutX="20.0" layoutY="260.0" prefWidth="300" prefHeight="120" wrapText="true" visible="false" managed="false" style="-fx-font-size:14;"/>
-            <Label fx:id="salidadefinirmatrices" layoutX="400.0" layoutY="10.0" text="" style="-fx-text-fill: gray; -fx-font-size: 100;"/>
+            <Label fx:id="salidadefinirmatrices" layoutX="400.0" layoutY="10.0" text="" style="-fx-text-fill: gray; -fx-font-size: 40;"/>
             <TextField layoutX="76.0" fx:id="pantalla" layoutY="117.0" prefHeight="108.0" prefWidth="256.0" style="-fx-background-color: green"/>
             <Button layoutX="63.0" layoutY="294.0" mnemonicParsing="false" text="Vectores" textAlignment="CENTER" fx:id="vectores" onAction="#mvectores" >
                <font>

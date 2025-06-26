@@ -5,11 +5,13 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Controlador {
 
-    public TextField pantalla;
     @FXML
-    private TextField display;
+    public TextField pantalla;
     @FXML
     private Label modoleyenda;
     @FXML
@@ -28,7 +30,6 @@ public class Controlador {
     @FXML
     private Button btn4;
 
-
     @FXML
     public void mbtn1() {
         pantalla.setText(pantalla.getText()+1);
@@ -38,7 +39,19 @@ public class Controlador {
         modoleyenda.setText("Modo vectores");
     }
 
-    public void mmatrices() {
+
+    /*#### Sistema de MATRICES ####*/
+    /*Variables para matrices*/
+    private String matrizselec;
+    private int fmatriz;
+    private int cmatriz;
+    private Map<String, int[][]> matrices = new HashMap<>(); //Lo usamos para crear mas de 1 matriz y poder seleccionarlas por el id
+    private int[][] matriz;
+    private boolean esperandoFilas = true;
+    private int filaA=0;
+    private int columnaA=0;
+
+    public void mmatrices() { //SUBMENU
         modoleyenda.setText("Modo matrices");
         subMenu.setText(
                 "Definir Matriz\n"+
@@ -67,10 +80,71 @@ public class Controlador {
         btn4.setOnAction(e -> definirMatriz("D"));
     }
 
-    private void definirMatriz(String matrizid){
+    private void definirMatriz(String matrizid) { //DEFINIR DIMENSIONES
+        matrizselec = matrizid;
+        esperandoFilas=true;
+
         salidadefinirmatrices.setText("Definir Matriz " + matrizid + "\nIngrese la cantidad de filas:");
+        pantalla.setOnAction(e -> {
+            try{
+                int valor=Integer.parseInt(pantalla.getText());
+                pantalla.clear();
+                if(esperandoFilas){
+                    fmatriz=valor;
+                    esperandoFilas=false;
+                    salidadefinirmatrices.setText("Definir Matriz " + matrizid + "\nIngrese la cantidad de columnas:");
+                } else{
+                    cmatriz=valor;
+                    pantalla.setOnAction(null);
+                    crearmatriz(matrizid, fmatriz, cmatriz);
+                }
+            } catch (NumberFormatException ex){
+                salidadefinirmatrices.setText("Error");
+                pantalla.clear();
+            }
+        });
+    }
+    private void crearmatriz(String matrizid, int filas, int columnas){ //DEFINIR VALORES
+        matriz= new int[filas][columnas];
+        filaA=0;
+        columnaA=0;
+        pantalla.setOnAction(e ->{
+            try{
+                int valor = Integer.parseInt(pantalla.getText());
+                pantalla.clear();
+
+                matriz[filaA][columnaA]=valor;
+                columnaA++;
+                if(columnaA ==columnas){
+                    columnaA=0;
+                    filaA++;
+                }
+                if (filaA == filas) {
+                    matrices.put(matrizid, matriz);
+                    pantalla.setOnAction(null);
+                    mostrarMatriz(matriz);
+                }
+            }catch (NumberFormatException ex){
+                salidadefinirmatrices.setText("Error");
+                pantalla.clear();
+            }
+        });
+
 
     }
+    private void mostrarMatriz(int[][] m) { //FUNCION DE PRUEBA
+        StringBuilder sb = new StringBuilder("Matriz ingresada:\n");
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[0].length; j++) {
+                sb.append(matriz[i][j]).append("\t");
+            }
+            sb.append("\n");
+        }
+        salidadefinirmatrices.setText(sb.toString());
+    }
+    /*#### FIN ####*/
+
+
 
     public void mecuaciones() {
         modoleyenda.setText("Modo ecuaciones");
@@ -186,5 +260,13 @@ public class Controlador {
                 });
             }
         });
+    }
+
+    public boolean isEsperandoFilas() {
+        return esperandoFilas;
+    }
+
+    public void setEsperandoFilas(boolean esperandoFilas) {
+        this.esperandoFilas = esperandoFilas;
     }
 }
