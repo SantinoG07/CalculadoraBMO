@@ -1,6 +1,5 @@
 package org.example;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -221,11 +220,65 @@ public class Controlador {
                 return;
             }
         }
-
-
+        int [][] resultado = new int[filas][columnas];
+        int [][] primera = matricesrestar.get(0);
+        for(int i=0; i<filas; i++){
+            for(int j=0; j<columnas; j++){
+                resultado[i][j]=primera[i][j];
+            }
+        }
+        for (int k = 1; k < matricesrestar.size(); k++) {
+            int [][] m= matricesrestar.get(k);
+            for (int i = 0; i <filas; i++) {
+                for (int j = 0; j <columnas; j++) {
+                    resultado[i][j]-=m[i][j];
+                }
+            }
+            
+        }
         mostrarMatriz(resultado);
 
     }
+
+    private void procesarmatM() {
+        String expresion = pantalla.getText();
+        String[] mat = expresion.split("\\*");
+
+
+        String id1 = mat[0].trim().replace("Matriz", "");
+        String id2 = mat[1].trim().replace("Matriz", "");
+
+
+        int[][] m1 = matrices.get(id1);
+        int[][] m2 = matrices.get(id2);
+
+        int filas1 = m1.length;
+        int columnas1 = m1[0].length;
+        int filas2 = m2.length;
+        int columnas2 = m2[0].length;
+
+        if (columnas1 != filas2) {
+            salidadefinirmatrices.setText("Columnas de la primera matriz deben ser iguales a filas de la segunda.");
+            return;
+        }
+
+        int[][] resultado = new int[filas1][columnas2];
+
+        for (int i = 0; i < filas1; i++) {
+            for (int j = 0; j < columnas2; j++) {
+                for (int k = 0; k < columnas1; k++) {
+                    resultado[i][j] += m1[i][k] * m2[k][j];
+                }
+            }
+        }
+
+        mostrarMatriz(resultado);
+    }
+
+
+
+
+
     /*#### FIN ####*/
 
 
@@ -296,8 +349,16 @@ public class Controlador {
             case "Modo matrices":
                 if(pantalla.getText().contains("-")){
                     procesarmatR();
-                }else{
+                }else if(pantalla.getText().contains("+")){
                     procesarmatS();
+                }else if(pantalla.getText().contains("/")){
+                    procesarmatD();
+                }else if(pantalla.getText().contains("*")){
+                    procesarmatM();
+                }else if(pantalla.getText().contains("Det(")){
+                    procesarmatDet();
+                }else if(pantalla.getText().contains("Inv(")){
+                    procesarmatInv();
                 }
                 break;
             case "Modo ecuaciones":
