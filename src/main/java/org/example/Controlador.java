@@ -10,6 +10,17 @@ import java.util.Map;
 
 public class Controlador {
 
+
+    // Modo seleccionado
+    boolean modo_calculo = true;
+    boolean modo_vectores = false;
+    boolean modo_matrices = false;
+    boolean modo_ecuacion = false;
+
+
+    // Modo ecuaciones
+    boolean sis2x2 = true;
+
     @FXML
     public TextField pantalla;
     @FXML
@@ -37,6 +48,13 @@ public class Controlador {
 
     public void mvectores() {
         modoleyenda.setText("Modo vectores");
+
+        modo_ecuacion = false;
+        modo_calculo = false;
+        modo_matrices = false;
+        modo_vectores = true;
+
+        ocultarSubmenus();
     }
 
 
@@ -53,6 +71,12 @@ public class Controlador {
     private int columnaA=0;
 
     public void mmatrices() { //SUBMENU
+
+        modo_ecuacion = false;
+        modo_calculo = false;
+        modo_matrices = true;
+        modo_vectores = false;
+
         modoleyenda.setText("Modo matrices");
         subMenu.setText(
                 "Definir Matriz\n"+
@@ -63,6 +87,7 @@ public class Controlador {
         );
         subMenu.setVisible(true);
         subMenu.setManaged(true);
+        ocultarSubmenus();
     }
     void seleccionarmatriz(Scene scene){ //Usamos el Scene porque vendria a ser una grabacion de la escena o pantalla que ve el usuario, se usa para esperar que este presione una tecla o haga algo, asi lo almacenamos/usamos
         scene.setOnKeyPressed(keyEvent -> { //Dentro de la escena, pedimos la tecla o accion hecha, kayevent para indicar que al presionar se ejecuta lo siguiente
@@ -143,16 +168,265 @@ public class Controlador {
         }
         salidadefinirmatrices.setText(sb.toString());
     }
-    /*#### FIN ####*/
+    /*#### FIN MATRICES ####*/
+
+    /*#### Sistema de ECUACIONES lineales ####*/
 
 
+    @FXML private Button btnSistema2x2;
+    @FXML private Button btnSistema3x3;
 
+    @FXML private TextField coefA1;
+    @FXML private TextField coefB1;
+    @FXML private TextField coefC1;
+    @FXML private TextField coefD1;
+    @FXML private TextField coefA2;
+    @FXML private TextField coefB2;
+    @FXML private TextField coefC2;
+    @FXML private TextField coefD2;
+    @FXML private TextField coefA3;
+    @FXML private TextField coefB3;
+    @FXML private TextField coefC3;
+    @FXML private TextField coefD3;
+
+    @FXML private Label l1;
+    @FXML private Label l2;
+    @FXML private Label l3;
+    @FXML private Label l4;
+    @FXML private Label l5;
+    @FXML private Label l6;
+    @FXML private Label l7;
+    @FXML private Label l8;
+    @FXML private Label l9;
+    @FXML private Label l10;
+    @FXML private Label l11;
+    @FXML private Label l12;
+
+    @FXML
     public void mecuaciones() {
         modoleyenda.setText("Modo ecuaciones");
+
+        modo_ecuacion = true;
+        modo_calculo = false;
+        modo_matrices = false;
+        modo_vectores = false;
+
+        ocultarSubmenus();
+
+        btnSistema2x2.setVisible(true); btnSistema2x2.setManaged(true);
+        btnSistema3x3.setVisible(true); btnSistema3x3.setManaged(true);
+    }
+
+
+    @FXML
+    public void mostrarCampos2x2() {
+        ocultarCampos3x3();
+        sis2x2 = true;
+
+        l1.setVisible(true);
+        l2.setVisible(true);
+        l3.setVisible(true);
+        l4.setVisible(true);
+        l5.setVisible(true);
+        l6.setVisible(true);
+
+        coefA1.setVisible(true); coefA1.setManaged(true);
+        coefB1.setVisible(true); coefB1.setManaged(true);
+        coefC1.setVisible(true); coefC1.setManaged(true);
+        coefA2.setVisible(true); coefA2.setManaged(true);
+        coefB2.setVisible(true); coefB2.setManaged(true);
+        coefC2.setVisible(true); coefC2.setManaged(true);
+    }
+
+    public void mostrarCampos3x3() {
+        ocultarCampos2x2();
+        sis2x2 = false;
+
+        l1.setVisible(true);
+        l2.setVisible(true);
+        l3.setVisible(true);
+        l4.setVisible(true);
+        l5.setVisible(true);
+        l6.setVisible(true);
+        l7.setVisible(true);
+        l8.setVisible(true);
+        l9.setVisible(true);
+        l10.setVisible(true);
+        l11.setVisible(true);
+        l12.setVisible(true);
+
+        coefA1.setVisible(true); coefA1.setManaged(true);
+        coefB1.setVisible(true); coefB1.setManaged(true);
+        coefC1.setVisible(true); coefC1.setManaged(true);
+        coefD1.setVisible(true); coefD1.setManaged(true);
+        coefA2.setVisible(true); coefA2.setManaged(true);
+        coefB2.setVisible(true); coefB2.setManaged(true);
+        coefC2.setVisible(true); coefC2.setManaged(true);
+        coefD2.setVisible(true); coefD2.setManaged(true);
+        coefA3.setVisible(true); coefA3.setManaged(true);
+        coefB3.setVisible(true); coefB3.setManaged(true);
+        coefC3.setVisible(true); coefC3.setManaged(true);
+        coefD3.setVisible(true); coefD3.setManaged(true);
+
+    }
+
+    public void ocultarCampos2x2() {
+        l1.setVisible(false);
+        l2.setVisible(false);
+        l3.setVisible(false);
+        l4.setVisible(false);
+        l5.setVisible(false);
+        l6.setVisible(false);
+        coefA1.setVisible(false); coefA1.setManaged(false);
+        coefB1.setVisible(false); coefB1.setManaged(false);
+        coefC1.setVisible(false); coefC1.setManaged(false);
+        coefA2.setVisible(false); coefA2.setManaged(false);
+        coefB2.setVisible(false); coefB2.setManaged(false);
+        coefC2.setVisible(false); coefC2.setManaged(false);
+    }
+
+    public void ocultarCampos3x3() {
+        l1.setVisible(false);
+        l2.setVisible(false);
+        l3.setVisible(false);
+        l4.setVisible(false);
+        l5.setVisible(false);
+        l6.setVisible(false);
+        l7.setVisible(false);
+        l8.setVisible(false);
+        l9.setVisible(false);
+        l10.setVisible(false);
+        l11.setVisible(false);
+        l12.setVisible(false);
+
+
+        coefA1.setVisible(false); coefA1.setManaged(false);
+        coefB1.setVisible(false); coefB1.setManaged(false);
+        coefC1.setVisible(false); coefC1.setManaged(false);
+        coefD1.setVisible(false); coefD1.setManaged(false);
+        coefA2.setVisible(false); coefA2.setManaged(false);
+        coefB2.setVisible(false); coefB2.setManaged(false);
+        coefC2.setVisible(false); coefC2.setManaged(false);
+        coefD2.setVisible(false); coefD2.setManaged(false);
+        coefA3.setVisible(false); coefA3.setManaged(false);
+        coefB3.setVisible(false); coefB3.setManaged(false);
+        coefC3.setVisible(false); coefC3.setManaged(false);
+        coefD3.setVisible(false); coefD3.setManaged(false);
+    }
+
+    @FXML
+    public void resolverSistema2x2() {
+        try {
+            float a1 = Float.parseFloat(coefA1.getText());
+            float b1 = Float.parseFloat(coefB1.getText());
+            float c1 = Float.parseFloat(coefC1.getText());
+            float a2 = Float.parseFloat(coefA2.getText());
+            float b2 = Float.parseFloat(coefB2.getText());
+            float c2 = Float.parseFloat(coefC2.getText());
+
+            float D = a1 * b2 - b1 * a2;
+            float Dx = c1 * b2 - b1 * c2;
+            float Dy = a1 * c2 - c1 * a2;
+
+            String resultado_;
+            if (D == 0 && Dx == 0 && Dy == 0) {
+                resultado_ = "El sistema tiene infinitas soluciones.";
+            } else if (D == 0) {
+                resultado_ = "El sistema no tiene solución.";
+            } else {
+                float x = Dx / D;
+                float y = Dy / D;
+                resultado_ = "Solución:\nX = " + x + "\nY = " + y;
+            }
+
+            pantalla.setText(resultado_);
+        } catch (NumberFormatException e) {
+            pantalla.setText("Error: Ingresá solo números válidos.");
+        }
+    }
+
+    @FXML
+    public void resolverSistema3x3() {
+        try {
+            float a1 = Float.parseFloat(coefA1.getText());
+            float b1 = Float.parseFloat(coefB1.getText());
+            float c1 = Float.parseFloat(coefC1.getText());
+            float d1 = Float.parseFloat(coefD1.getText());
+
+            float a2 = Float.parseFloat(coefA2.getText());
+            float b2 = Float.parseFloat(coefB2.getText());
+            float c2 = Float.parseFloat(coefC2.getText());
+            float d2 = Float.parseFloat(coefD2.getText());
+
+            float a3 = Float.parseFloat(coefA3.getText());
+            float b3 = Float.parseFloat(coefB3.getText());
+            float c3 = Float.parseFloat(coefC3.getText());
+            float d3 = Float.parseFloat(coefD3.getText());
+
+            float D =  (b2 * c3 - b3 * c2) * a1
+                    - (b1 * c3 - b3 * c1) * a2
+                    + (b1 * c2 - b2 * c1) * a3;
+
+            float Dx = (b2 * c3 - b3 * c2) * d1
+                    - (b1 * c3 - b3 * d1) * a2
+                    + (b1 * d3 - b3 * d2) * a3;
+
+            float Dy = (d2 * c3 - d3 * c2) * a1
+                    - (d1 * c3 - d3 * c1) * a2
+                    + (d1 * c2 - d2 * c1) * a3;
+
+            float Dz = (b2 * d3 - b3 * d2) * a1
+                    - (b1 * d3 - b3 * d1) * a2
+                    + (b1 * d2 - b2 * d1) * a3;
+
+
+            String resultado_;
+            if (D == 0 && Dx == 0 && Dy == 0 && Dz == 0) {
+                resultado_ = "El sistema tiene infinitas soluciones.";
+            } else if (D == 0) {
+                resultado_ = "El sistema no tiene solución.";
+            } else {
+                float x = Dx / D;
+                float y = Dy / D;
+                float z = Dz / D;
+
+                resultado_ = "Solución:\nX = " + x + "\nY = " + y + "\nZ = " + z;
+            }
+
+            pantalla.setText(resultado_);
+        } catch (NumberFormatException e) {
+            pantalla.setText("Error: Ingresá solo números válidos.");
+        }
+    }
+
+
+    /*#### FIN ####*/
+
+    public void ocultarSubmenus() {
+        // Ocultar submenús de matrices, ecuaciones, calculos y vectores.
+
+        // CALCULOS
+
+        // VECTORES
+
+        // MATRICES
+
+        // ECUACIONES
+        btnSistema2x2.setVisible(false); btnSistema2x2.setManaged(false);
+        btnSistema3x3.setVisible(false); btnSistema3x3.setManaged(false);
+        ocultarCampos2x2();
+        ocultarCampos3x3();
     }
 
     public void mcalculos() {
         modoleyenda.setText("Modo calculos");
+
+        modo_ecuacion = false;
+        modo_calculo = true;
+        modo_matrices = false;
+        modo_vectores = false;
+
+        ocultarSubmenus();
     }
 
     public void mbtn4() {
@@ -207,7 +481,23 @@ public class Controlador {
     }
 
     public void mbtnresultado() {
-        pantalla.setText(pantalla.getText()+1);
+
+
+        if(modo_calculo){
+
+        }else if(modo_vectores){
+
+        } else if(modo_matrices){
+
+        }else if(modo_ecuacion){
+
+            if(sis2x2){
+                resolverSistema2x2();
+            } else {
+                resolverSistema3x3();
+            }
+
+        }
     }
 
     public void mbtnsuma() {

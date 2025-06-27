@@ -162,6 +162,59 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
+
+            <!-- Botón para mostrar los campos de los sistemas de ecuacion -->
+            <Button layoutX="110.0" layoutY="90.0"
+                    text="Sistema 2x2"
+                    fx:id="btnSistema2x2"
+                    onAction="#mostrarCampos2x2"
+                    visible="false" managed="false"/>
+
+            <Button layoutX="210.0" layoutY="90.0"
+                    text="Sistema 3x3"
+                    fx:id="btnSistema3x3"
+                    onAction="#mostrarCampos3x3"
+                    visible="false" managed="false"/>
+
+            <!-- Campos para ingresar coeficientes del sistema 2x2 -->
+            <Label layoutX="63.0" layoutY="140.0" text="A1:" fx:id="l1" visible="false"/>
+            <TextField layoutX="90.0" layoutY="135.0" fx:id="coefA1" visible="false" managed="false"/>
+
+            <Label layoutX="160.0" layoutY="140.0" text="B1:" fx:id="l2" visible="false"/>
+            <TextField layoutX="190.0" layoutY="135.0" fx:id="coefB1" visible="false" managed="false"/>
+
+            <Label layoutX="260.0" layoutY="140.0" text="C1:" fx:id="l3" visible="false"/>
+            <TextField layoutX="290.0" layoutY="135.0" fx:id="coefC1" visible="false" managed="false"/>
+
+            <Label layoutX="63.0" layoutY="180.0" text="A2:" fx:id="l4" visible="false"/>
+            <TextField layoutX="90.0" layoutY="175.0" fx:id="coefA2" visible="false" managed="false"/>
+
+            <Label layoutX="160.0" layoutY="180.0" text="B2:" fx:id="l5" visible="false"/>
+            <TextField layoutX="190.0" layoutY="175.0" fx:id="coefB2" visible="false" managed="false"/>
+
+            <Label layoutX="260.0" layoutY="180.0" text="C2:" fx:id="l6" visible="false"/>
+            <TextField layoutX="290.0" layoutY="175.0" fx:id="coefC2" visible="false" managed="false"/>
+
+            <!-- Campos para ingresar coeficientes restantes del sistema 3x3 -->
+
+            <Label layoutX="360.0" layoutY="140.0" text="D1:" fx:id="l7" visible="false"/>
+            <TextField layoutX="390.0" layoutY="135.0" fx:id="coefD1" visible="false" managed="false"/>
+
+            <Label layoutX="360.0" layoutY="180.0" text="D2:" fx:id="l8" visible="false"/>
+            <TextField layoutX="390.0" layoutY="175.0" fx:id="coefD2" visible="false" managed="false"/>
+
+            <Label layoutX="63.0" layoutY="220.0" text="A3:" fx:id="l9" visible="false"/>
+            <TextField layoutX="90.0" layoutY="215.0" fx:id="coefA3" visible="false" managed="false"/>
+
+            <Label layoutX="160.0" layoutY="220.0" text="B3:" fx:id="l10" visible="false"/>
+            <TextField layoutX="190.0" layoutY="215.0" fx:id="coefB3" visible="false" managed="false"/>
+
+            <Label layoutX="260.0" layoutY="220.0" text="C3:" fx:id="l11" visible="false"/>
+            <TextField layoutX="290.0" layoutY="215.0" fx:id="coefC3" visible="false" managed="false"/>
+
+            <Label layoutX="360.0" layoutY="220.0" text="D3:" fx:id="l12" visible="false"/>
+            <TextField layoutX="390.0" layoutY="215.0" fx:id="coefD3" visible="false" managed="false"/>
+
          </children>
 
       </Pane>
