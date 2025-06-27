@@ -5,7 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Controlador {
@@ -32,7 +34,7 @@ public class Controlador {
 
     @FXML
     public void mbtn1() {
-        pantalla.setText(pantalla.getText()+1);
+        pantalla.setText(pantalla.getText() + 1);
     }
 
     public void mvectores() {
@@ -49,29 +51,30 @@ public class Controlador {
     private Map<String, int[][]> matrices = new HashMap<>(); //Lo usamos para crear mas de 1 matriz y poder seleccionarlas por el id
     private int[][] matriz;
     private boolean esperandoFilas = true;
-    private int filaA=0;
-    private int columnaA=0;
+    private int filaA = 0;
+    private int columnaA = 0;
 
     public void mmatrices() { //SUBMENU
         modoleyenda.setText("Modo matrices");
         subMenu.setText(
-                "Definir Matriz\n"+
-                        "1: MatrizA\n"+
-                        "2: MatrizB\n"+
-                        "3: MatrizC\n"+
+                "Definir Matriz\n" +
+                        "1: MatrizA\n" +
+                        "2: MatrizB\n" +
+                        "3: MatrizC\n" +
                         "4: MatrizD\n"
         );
         subMenu.setVisible(true);
         subMenu.setManaged(true);
     }
-    void seleccionarmatriz(Scene scene){ //Usamos el Scene porque vendria a ser una grabacion de la escena o pantalla que ve el usuario, se usa para esperar que este presione una tecla o haga algo, asi lo almacenamos/usamos
+
+    void seleccionarmatriz(Scene scene) { //Usamos el Scene porque vendria a ser una grabacion de la escena o pantalla que ve el usuario, se usa para esperar que este presione una tecla o haga algo, asi lo almacenamos/usamos
         scene.setOnKeyPressed(keyEvent -> { //Dentro de la escena, pedimos la tecla o accion hecha, kayevent para indicar que al presionar se ejecuta lo siguiente
-                switch (keyEvent.getCode()){ //Getcode pide el ascii de la tecla presionada, keyevent es el hecho de presionar la tecla
-                    case DIGIT1 -> definirMatriz("A");
-                    case DIGIT2 -> definirMatriz("B");
-                    case DIGIT3 -> definirMatriz("C");
-                    case DIGIT4 -> definirMatriz("D");
-                }
+                    switch (keyEvent.getCode()) { //Getcode pide el ascii de la tecla presionada, keyevent es el hecho de presionar la tecla
+                        case DIGIT1 -> definirMatriz("A");
+                        case DIGIT2 -> definirMatriz("B");
+                        case DIGIT3 -> definirMatriz("C");
+                        case DIGIT4 -> definirMatriz("D");
+                    }
                 }
 
         );
@@ -83,41 +86,42 @@ public class Controlador {
 
     private void definirMatriz(String matrizid) { //DEFINIR DIMENSIONES
         matrizselec = matrizid;
-        esperandoFilas=true;
+        esperandoFilas = true;
 
         salidadefinirmatrices.setText("Definir Matriz " + matrizid + "\nIngrese la cantidad de filas:");
         pantalla.setOnAction(e -> {
-            try{
-                int valor=Integer.parseInt(pantalla.getText());
+            try {
+                int valor = Integer.parseInt(pantalla.getText());
                 pantalla.clear();
-                if(esperandoFilas){
-                    fmatriz=valor;
-                    esperandoFilas=false;
+                if (esperandoFilas) {
+                    fmatriz = valor;
+                    esperandoFilas = false;
                     salidadefinirmatrices.setText("Definir Matriz " + matrizid + "\nIngrese la cantidad de columnas:");
-                } else{
-                    cmatriz=valor;
+                } else {
+                    cmatriz = valor;
                     pantalla.setOnAction(null);
                     crearmatriz(matrizid, fmatriz, cmatriz);
                 }
-            } catch (NumberFormatException ex){
+            } catch (NumberFormatException ex) {
                 salidadefinirmatrices.setText("Error");
                 pantalla.clear();
             }
         });
     }
-    private void crearmatriz(String matrizid, int filas, int columnas){ //DEFINIR VALORES
-        matriz= new int[filas][columnas];
-        filaA=0;
-        columnaA=0;
-        pantalla.setOnAction(e ->{
-            try{
+
+    private void crearmatriz(String matrizid, int filas, int columnas) { //DEFINIR VALORES
+        matriz = new int[filas][columnas];
+        filaA = 0;
+        columnaA = 0;
+        pantalla.setOnAction(e -> {
+            try {
                 int valor = Integer.parseInt(pantalla.getText());
                 pantalla.clear();
 
-                matriz[filaA][columnaA]=valor;
+                matriz[filaA][columnaA] = valor;
                 columnaA++;
-                if(columnaA ==columnas){
-                    columnaA=0;
+                if (columnaA == columnas) {
+                    columnaA = 0;
                     filaA++;
                 }
                 if (filaA == filas) {
@@ -125,7 +129,7 @@ public class Controlador {
                     pantalla.setOnAction(null);
                     mostrarMatriz(matriz);
                 }
-            }catch (NumberFormatException ex){
+            } catch (NumberFormatException ex) {
                 salidadefinirmatrices.setText("Error");
                 pantalla.clear();
             }
@@ -133,18 +137,96 @@ public class Controlador {
 
 
     }
+
     private void mostrarMatriz(int[][] m) { //FUNCION DE PRUEBA
         StringBuilder sb = new StringBuilder("Matriz ingresada:\n");
-        for (int i = 0; i < matriz.length; i++) {
-            for (int j = 0; j < matriz[0].length; j++) {
-                sb.append(matriz[i][j]).append("\t");
+        for (int i = 0; i < m.length; i++) {
+            for (int j = 0; j < m[0].length; j++) {
+                sb.append(m[i][j]).append("\t");
             }
             sb.append("\n");
         }
         salidadefinirmatrices.setText(sb.toString());
     }
-    /*#### FIN ####*/
 
+    public void mmat1() {
+        if (matrices.containsKey("A")) {
+            pantalla.setText(pantalla.getText() + "MatrizA");
+        }
+    }
+
+    public void mmat2() {
+        if (matrices.containsKey("B")) {
+            pantalla.setText(pantalla.getText() + "MatrizB");
+        }
+
+    }
+
+    public void mmat3() {
+        if (matrices.containsKey("C")) {
+            pantalla.setText(pantalla.getText() + "MatrizC");
+        }
+    }
+
+    public void mmat4() {
+        if (matrices.containsKey("D")) {
+            pantalla.setText(pantalla.getText() + "MatrizD");
+        }
+    }
+
+
+    private void procesarmatS() {
+        String expresion  = pantalla.getText();
+        String[] mat= expresion.split("\\+"); //Convierte la expresion en una array con las matrices ingresadas
+
+        List<int[][]> matricesasumar = new ArrayList<>();
+
+        for(String matri:mat){
+            String id = matri.replace("Matriz", ""); //Elimina matriz de la expresion, dejando solamente los id
+            matricesasumar.add(matrices.get(id));
+        }
+        int filas = matricesasumar.get(0).length; //Obtenemos las filas
+        int columnas = matricesasumar.get(0)[0].length;//Obtenemos las columnas
+        for (int[][] m : matricesasumar) {
+            if (m.length != filas || m[0].length != columnas) {
+                salidadefinirmatrices.setText("Las matrices deben tener las mismas dimensiones.");
+                return;
+            }
+        }
+        int[][] resultado = new int[filas][columnas];
+
+        for (int[][] m : matricesasumar) {
+            for (int i = 0; i < filas; i++) {
+                for (int j = 0; j < columnas; j++) {
+                    resultado[i][j] += m[i][j];
+                }
+            }
+        }
+        mostrarMatriz(resultado);
+
+    }
+    private void procesarmatR() {
+        String expresion  = pantalla.getText();
+        String[] mat= expresion.split("\\-"); //Convierte la expresion en una array con las matrices ingresadas
+        List<int[][]> matricesrestar = new ArrayList<>();
+        for(String matri:mat){
+            String id = matri.replace("Matriz", ""); //Elimina matriz de la expresion, dejando solamente los id
+            matricesrestar.add(matrices.get(id));
+        }
+        int filas = matricesrestar.get(0).length;
+        int columnas = matricesrestar.get(0)[0].length;
+        for (int[][] m : matricesrestar) {
+            if (m.length != filas || m[0].length != columnas) {
+                salidadefinirmatrices.setText("Las matrices deben tener las mismas dimensiones.");
+                return;
+            }
+        }
+
+
+        mostrarMatriz(resultado);
+
+    }
+    /*#### FIN ####*/
 
 
     public void mecuaciones() {
@@ -156,62 +238,89 @@ public class Controlador {
     }
 
     public void mbtn4() {
-        pantalla.setText(pantalla.getText()+4);
+        pantalla.setText(pantalla.getText() + 4);
     }
 
     public void mbtn2() {
-        pantalla.setText(pantalla.getText()+2);
+        pantalla.setText(pantalla.getText() + 2);
     }
 
     public void mbtn5() {
-        pantalla.setText(pantalla.getText()+5);
+        pantalla.setText(pantalla.getText() + 5);
     }
 
     public void mbtn7() {
-        pantalla.setText(pantalla.getText()+7);
+        pantalla.setText(pantalla.getText() + 7);
     }
 
     public void mbtn0() {
-        pantalla.setText(pantalla.getText()+0);
+        pantalla.setText(pantalla.getText() + 0);
     }
 
     public void mbtn8() {
-        pantalla.setText(pantalla.getText()+8);
+        pantalla.setText(pantalla.getText() + 8);
     }
 
     public void mbtncoma() {
-        pantalla.setText(pantalla.getText()+",");
+        pantalla.setText(pantalla.getText() + ",");
     }
 
     public void mbtn3() {
-        pantalla.setText(pantalla.getText()+3);
+        pantalla.setText(pantalla.getText() + 3);
     }
 
     public void mbtn6() {
-        pantalla.setText(pantalla.getText()+6);
+        pantalla.setText(pantalla.getText() + 6);
     }
 
     public void mbtndel() {
-        String texto=pantalla.getText();
-        if(!texto.isEmpty()){
-            pantalla.setText(texto.substring(0,texto.length()-1));
+        String texto = pantalla.getText();
+        if (!texto.isEmpty()) {
+            pantalla.setText(texto.substring(0, texto.length() - 1));
         }
     }
 
     public void mbtnmult() {
-        pantalla.setText(pantalla.getText()+"*");
+        pantalla.setText(pantalla.getText() + "*");
     }
 
     public void mbtn9() {
-        pantalla.setText(pantalla.getText()+9);
+        pantalla.setText(pantalla.getText() + 9);
     }
 
     public void mbtnresultado() {
-        pantalla.setText(pantalla.getText()+1);
+        switch (modoleyenda.getText()){
+            case "Modo vectores":
+                procesarvec();
+                break;
+            case "Modo matrices":
+                if(pantalla.getText().contains("-")){
+                    procesarmatR();
+                }else{
+                    procesarmatS();
+                }
+                break;
+            case "Modo ecuaciones":
+                procesarec();
+                break;
+            case "Modo calculos":
+                procesarcal();
+                break;
+        }
+    }
+
+    private void procesarcal() {
+    }
+
+    private void procesarec() {
+    }
+
+
+    private void procesarvec() {
     }
 
     public void mbtnsuma() {
-        pantalla.setText(pantalla.getText()+"+");
+        pantalla.setText(pantalla.getText() + "+");
     }
 
     public void mbtnac() {
@@ -219,11 +328,11 @@ public class Controlador {
     }
 
     public void mbtndiv() {
-        pantalla.setText(pantalla.getText()+"/");
+        pantalla.setText(pantalla.getText() + "/");
     }
 
     public void mbtnmenos() {
-        pantalla.setText(pantalla.getText()+"-");
+        pantalla.setText(pantalla.getText() + "-");
     }
 
     public void mbtnon() {
@@ -248,7 +357,8 @@ public class Controlador {
                         case ESCAPE -> mbtnac();
                         case DELETE -> mbtndel();
 
-                    };
+                    }
+                    ;
                     String texto = event.getText();
                     switch (texto) {
                         case "+" -> mbtnsuma();
@@ -262,5 +372,7 @@ public class Controlador {
             }
         });
     }
+
+
 
 }

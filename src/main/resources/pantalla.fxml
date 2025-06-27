@@ -137,22 +137,22 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button layoutX="249.0" layoutY="325.0" mnemonicParsing="false" text="VectorA" textAlignment="CENTER" fx:id="vec1" onAction="#mecuaciones" >
+            <Button layoutX="249.0" layoutY="325.0" mnemonicParsing="false" text="MatrizA" textAlignment="CENTER" fx:id="vec1" onAction="#mmat1" >
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button layoutX="249.0" layoutY="350.0" mnemonicParsing="false" text="VectorB" textAlignment="CENTER" fx:id="vec2" onAction="#mecuaciones" >
+            <Button layoutX="249.0" layoutY="350.0" mnemonicParsing="false" text="MatrizB" textAlignment="CENTER" fx:id="vec2" onAction="#mmat2" >
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button layoutX="249.0" layoutY="375.0" mnemonicParsing="false" text="VectorC" textAlignment="CENTER" fx:id="vec3" onAction="#mecuaciones" >
+            <Button layoutX="249.0" layoutY="375.0" mnemonicParsing="false" text="MatrizC" textAlignment="CENTER" fx:id="vec3" onAction="#mmat3" >
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button layoutX="249.0" layoutY="400.0" mnemonicParsing="false" text="VectorD" textAlignment="CENTER" fx:id="vec4" onAction="#mecuaciones" >
+            <Button layoutX="249.0" layoutY="400.0" mnemonicParsing="false" text="MAtrizD" textAlignment="CENTER" fx:id="vec4" onAction="#mmat4" >
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
