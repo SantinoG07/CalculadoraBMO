@@ -36,10 +36,87 @@ public class Controlador {
         pantalla.setText(pantalla.getText() + 1);
     }
 
+    /*#### Sistema de VECTORES ####*/
+    //Variables de vectores
+    private String vectorSelec;
+    private int[] vector;
+    private int indiceVector = 0;
+    @FXML
+    private Map<String, int[]> vectores = new HashMap<>();
+
     public void mvectores() {
         modoleyenda.setText("Modo vectores");
+        subMenu.setText(
+                "Definir Vector\n" +
+                        "1: VectorA\n" +
+                        "2: VectorB\n" +
+                        "3: VectorC\n" +
+                        "4: VectorD\n"
+        );
+        subMenu.setVisible(true);
+        subMenu.setManaged(true);
     }
+    void seleccionarVector(Scene scene){
+        scene.setOnKeyPressed(keyEvent -> {
+            switch (keyEvent.getCode()) {
+                case DIGIT1 -> definirVector("A");
+                case DIGIT2 -> definirVector("B");
+                case DIGIT3 -> definirVector("C");
+                case DIGIT4 -> definirVector("D");
+            }
+        });
 
+        btn1.setOnAction(e -> definirVector("A"));
+        btn2.setOnAction(e -> definirVector("B"));
+        btn3.setOnAction(e -> definirVector("C"));
+        btn4.setOnAction(e -> definirVector("D"));
+    }
+    private void definirVector(String vectorId) {
+        vectorSelec = vectorId;
+        salidadefinirmatrices.setText("Definir Vector " + vectorId + "\nIngrese la cantidad de elementos:");
+        pantalla.setOnAction(e -> {
+            try {
+                int dimension = Integer.parseInt(pantalla.getText());
+                pantalla.clear();
+                crearVector(vectorId, dimension);
+            } catch (NumberFormatException ex) {
+                salidadefinirmatrices.setText("Error");
+                pantalla.clear();
+            }
+        });
+    }
+    private void crearVector(String vectorId, int dimension) {
+        vector = new int[dimension];
+        indiceVector = 0;
+
+        salidadefinirmatrices.setText("Ingrese los elementos del vector " + vectorId + " (" + dimension + " valores):");
+
+        pantalla.setOnAction(e -> {
+            try {
+                int valor = Integer.parseInt(pantalla.getText());
+                pantalla.clear();
+
+                vector[indiceVector++] = valor;
+
+                if (indiceVector == dimension) {
+                    vectores.put(vectorId, vector);
+                    pantalla.setOnAction(null);
+                    mostrarVector(vector);
+                }
+            } catch (NumberFormatException ex) {
+                salidadefinirmatrices.setText("Error");
+                pantalla.clear();
+            }
+        });
+    }
+    private void mostrarVector(int[] v) {
+        StringBuilder sb = new StringBuilder("Vector ingresado:\n");
+        for (int i = 0; i < v.length; i++) {
+            sb.append(v[i]).append(" ");
+        }
+        salidadefinirmatrices.setText(sb.toString());
+    }
+    /*#### FIN de VECTORES####*/
 
     /*#### Sistema de MATRICES ####*/
     /*Variables para matrices*/
@@ -68,6 +145,7 @@ public class Controlador {
 
     void seleccionarmatriz(Scene scene) { //Usamos el Scene porque vendria a ser una grabacion de la escena o pantalla que ve el usuario, se usa para esperar que este presione una tecla o haga algo, asi lo almacenamos/usamos
         scene.setOnKeyPressed(keyEvent -> { //Dentro de la escena, pedimos la tecla o accion hecha, kayevent para indicar que al presionar se ejecuta lo siguiente
+
                     switch (keyEvent.getCode()) { //Getcode pide el ascii de la tecla presionada, keyevent es el hecho de presionar la tecla
                         case DIGIT1 -> definirMatriz("A");
                         case DIGIT2 -> definirMatriz("B");
@@ -443,6 +521,10 @@ public class Controlador {
         });
     }
 
+<<<<<<< HEAD
 
 
 }
+=======
+}
+>>>>>>> a44ae06 (Agregando vectores a Controlador.java)
