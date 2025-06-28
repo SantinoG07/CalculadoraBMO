@@ -370,6 +370,15 @@ public class Controlador {
         }
     }
 
+    private void procesarmatInv() {
+    }
+
+    private void procesarmatDet() {
+    }
+
+    private void procesarmatD() {
+    }
+
     private void procesarcal() {
     }
 
