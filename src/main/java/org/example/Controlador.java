@@ -760,8 +760,6 @@ public class Controlador {
 
 
 
-
-
     /*##Manejo de los paneles##*/
     @FXML
     private StackPane contenedorVistas;
