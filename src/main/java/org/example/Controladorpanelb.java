@@ -85,4 +85,20 @@ public class Controladorpanelb {
             controladorPadre.mparen();
         }
     }
+
+    public void mvec1(ActionEvent actionEvent) {
+        if (controladorPadre != null) {
+            controladorPadre.mvec1();
+        }
+    }
+    public void mvec2(ActionEvent actionEvent) {
+        if (controladorPadre != null) {
+            controladorPadre.mvec2();
+        }
+    }
+    public void mvec3(ActionEvent actionEvent) {
+        if (controladorPadre != null) {
+            controladorPadre.mvec3();
+        }
+    }
 }

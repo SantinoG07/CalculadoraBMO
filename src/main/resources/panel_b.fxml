@@ -6,13 +6,13 @@
 <VBox xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="org.example.Controladorpanelb"
       spacing="10" alignment="CENTER">
-    <Button fx:id="vec1" layoutX="531.0" layoutY="580.0" mnemonicParsing="false" onAction="#mmat1" text="MatrizA"
+    <Button fx:id="mat1" layoutX="531.0" layoutY="580.0" mnemonicParsing="false" onAction="#mmat1" text="MatrizA"
             textAlignment="CENTER"/>
 
-    <Button fx:id="vec2" layoutX="419.0" layoutY="580.0" mnemonicParsing="false" onAction="#mmat2" text="MatrizB"
+    <Button fx:id="mat2" layoutX="419.0" layoutY="580.0" mnemonicParsing="false" onAction="#mmat2" text="MatrizB"
             textAlignment="CENTER"/>
 
-    <Button fx:id="vec3" layoutX="299.0" layoutY="574.0" mnemonicParsing="false" onAction="#mmat3" text="MatrizC"
+    <Button fx:id="mat3" layoutX="299.0" layoutY="574.0" mnemonicParsing="false" onAction="#mmat3" text="MatrizC"
             textAlignment="CENTER"/>
 
     <Button fx:id="vec4" layoutX="249.0" layoutY="661.0" mnemonicParsing="false" onAction="#mmat4" text="MAtrizD"
@@ -22,4 +22,10 @@
     <Button text="Det(" onAction="#agregarDet"/>
     <Button text="Inv(" onAction="#agregarInv"/>
     <Button text=")" onAction="#agregarParen"/>
+    <Button fx:id="vec1" layoutX="299.0" layoutY="574.0" mnemonicParsing="false" onAction="#mvec1" text="VectorA"
+            textAlignment="CENTER"/>
+    <Button fx:id="vec2" layoutX="299.0" layoutY="574.0" mnemonicParsing="false" onAction="#mvec2" text="VectorB"
+            textAlignment="CENTER"/>
+    <Button fx:id="vec3" layoutX="299.0" layoutY="574.0" mnemonicParsing="false" onAction="#mvec3" text="VectorC"
+            textAlignment="CENTER"/>
 </VBox>

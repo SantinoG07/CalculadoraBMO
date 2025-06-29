@@ -937,18 +937,285 @@ public class Controlador {
         }
     }
 
-    private void procesarvecPV(String texto) {
+
+
+    /*#### Sistema de VECTORES ####*/
+    /*Variables para matrices*/
+    private String vectorselec;
+    private int evectores;
+    @FXML
+    private Map<String, int[]> vector = new HashMap<>();
+    private int[] vec;
+
+    public void mvectores() { //SUBMENU
+        salidadefinirmatrices.setText("");
+        modoActual = Modo.vectores;
+        modoleyenda.setText("Modo vectores");
+        ocultarSubmenus();
+        salidadefinirmatrices.setText(
+                "Definir vectores\n" +
+                        "1: VectorA\n" +
+                        "2: VectorB\n" +
+                        "3: VectorC\n" +
+                        "4: VectorD\n"
+        );
+        seleccionarvector(pantalla.getScene());
     }
+
+    void seleccionarvector(Scene scene) { //Usamos el Scene porque vendria a ser una grabacion de la escena o pantalla que ve el usuario, se usa para esperar que este presione una tecla o haga algo, asi lo almacenamos/usamos
+        scene.setOnKeyPressed(keyEvent -> { //Dentro de la escena, pedimos la tecla o accion hecha, kayevent para indicar que al presionar se ejecuta lo siguiente
+
+                    switch (keyEvent.getCode()) { //Getcode pide el ascii de la tecla presionada, keyevent es el hecho de presionar la tecla
+                        case DIGIT1 -> definirVector("A");
+                        case DIGIT2 -> definirVector("B");
+                        case DIGIT3 -> definirVector("C");
+                        case DIGIT4 -> definirVector("D");
+                    }
+                }
+
+        );
+    }
+
+
+    private void definirVector(String vectorid) {
+        vectorselec = vectorid;
+
+        salidadefinirmatrices.setText("Definir Vector " + vectorid + "\nIngrese la cantidad de elementos:");
+        pantalla.setOnAction(e -> {
+            try {
+                int dimension = Integer.parseInt(pantalla.getText());
+                pantalla.clear();
+
+                int[] nuevoVector = new int[dimension];
+                int[] posicion = {0};
+
+                salidadefinirmatrices.setText("Ingrese el valor #" + (posicion[0] + 1) + " para Vector " + vectorid + ":");
+
+                pantalla.setOnAction(ev -> {
+                    try {
+                        int valor = Integer.parseInt(pantalla.getText());
+                        pantalla.clear();
+                        nuevoVector[posicion[0]] = valor;
+                        posicion[0]++;
+
+                        if (posicion[0] < dimension) {
+                            salidadefinirmatrices.setText("Ingrese el valor #" + (posicion[0] + 1) + " para Vector " + vectorid + ":");
+                        } else {
+                            pantalla.setOnAction(null);
+                            vector.put(vectorid, nuevoVector);
+                            salidadefinirmatrices.setText("Vector " + vectorid + " definido correctamente: " + Arrays.toString(nuevoVector));
+                        }
+
+                    } catch (NumberFormatException ex2) {
+                        salidadefinirmatrices.setText("Error: Ingresá solo números válidos.");
+                        pantalla.clear();
+                    }
+                });
+
+            } catch (NumberFormatException ex) {
+                salidadefinirmatrices.setText("Error: Ingresá un número entero válido.");
+                pantalla.clear();
+            }
+        });
+    }
+    private void procesarcvecSR(String texto, char c) {
+        String[] partes = texto.split("\\Q" + c + "\\E");
+        List<int[]> vectoresOperar = new ArrayList<>();
+
+        for (String parte : partes) {
+            String id = parte.replace("Vector", "").trim();
+            if (!vector.containsKey(id)) {
+                salidadefinirmatrices.setText("El vector " + id + " no existe.");
+                return;
+            }
+            vectoresOperar.add(vector.get(id));
+        }
+
+        if (vectoresOperar.size() < 2) {
+            salidadefinirmatrices.setText("Debe haber al menos dos vectores.");
+            return;
+        }
+
+        int tamaño = vectoresOperar.get(0).length;
+
+        // Validar tamaños iguales
+        for (int[] v : vectoresOperar) {
+            if (v.length != tamaño) {
+                salidadefinirmatrices.setText("Todos los vectores deben tener el mismo tamaño.");
+                return;
+            }
+        }
+
+        int[] resultado = Arrays.copyOf(vectoresOperar.get(0), tamaño);
+
+        for (int i = 1; i < vectoresOperar.size(); i++) {
+            int[] vec = vectoresOperar.get(i);
+            for (int j = 0; j < tamaño; j++) {
+                if (c == '+') {
+                    resultado[j] += vec[j];
+                } else {
+                    resultado[j] -= vec[j];
+                }
+            }
+        }
+
+        mostrarVectorResultado(resultado, c);
+        ultimoResultado = Arrays.toString(resultado);
+    }
+
+    private void mostrarVectorResultado(int[] vecResultado, char operacion) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Resultado de la ").append(operacion == '+' ? "suma" : "resta").append(":\n[");
+        for (int i = 0; i < vecResultado.length; i++) {
+            sb.append(vecResultado[i]);
+            if (i < vecResultado.length - 1) sb.append(", ");
+        }
+        sb.append("]");
+        salidadefinirmatrices.setText(sb.toString());
+    }
+
+
+
+    private void procesarvecPV(String texto) {
+        String expresion = texto.replace(" ", "");
+        String[] partes = expresion.split("x");
+
+        if (partes.length != 2) {
+            salidadefinirmatrices.setText("El producto vectorial se realiza entre dos vectores solamente.");
+            return;
+        }
+
+        List<int[]> vectoresOperar = new ArrayList<>();
+
+        for (String parte : partes) {
+            String id = parte.replace("Vector", "").trim();
+
+            if (!vector.containsKey(id)) {
+                salidadefinirmatrices.setText("No existe el vector " + id);
+                return;
+            }
+            vectoresOperar.add(vector.get(id));
+        }
+
+        int[] v1 = vectoresOperar.get(0);
+        int[] v2 = vectoresOperar.get(1);
+
+        if (v1.length != 3 || v2.length != 3) {
+            salidadefinirmatrices.setText("El producto vectorial solo está definido para vectores de dimensión 3.");
+            return;
+        }
+
+        int[] resultado = new int[3];
+        resultado[0] = v1[1] * v2[2] - v1[2] * v2[1];
+        resultado[1] = v1[2] * v2[0] - v1[0] * v2[2];
+        resultado[2] = v1[0] * v2[1] - v1[1] * v2[0];
+
+        mostrarVector(resultado);
+    }
+    private void mostrarVector(int[] vectorResultado) {
+        salidadefinirmatrices.setText("Resultado: " + Arrays.toString(vectorResultado));
+    }
+
+
+
 
     private void procesarvecPE(String texto) {
+        String expresion = texto.replace(" ", "");
+        String[] partes = expresion.split("\\.");
+
+        if (partes.length != 2) {
+            salidadefinirmatrices.setText("El producto escalar se realiza entre dos vectores solamente.");
+            return;
+        }
+
+        List<int[]> vectoresOperar = new ArrayList<>();
+
+        for (String parte : partes) {
+            String id = parte.replace("Vector", "").trim();
+
+            if (!vector.containsKey(id)) {
+                salidadefinirmatrices.setText("No existe el vector " + id);
+                return;
+            }
+            vectoresOperar.add(vector.get(id));
+        }
+
+        int[] v1 = vectoresOperar.get(0);
+        int[] v2 = vectoresOperar.get(1);
+
+        if (v1.length != v2.length) {
+            salidadefinirmatrices.setText("Los vectores deben tener la misma dimensión para el producto escalar.");
+            return;
+        }
+
+        int resultado = 0;
+        for (int i = 0; i < v1.length; i++) {
+            resultado += v1[i] * v2[i];
+        }
+
+        salidadefinirmatrices.setText("Producto escalar: " + resultado);
     }
+
 
     private void procesarvecE(String texto) {
+        String expresion = texto.replace(" ", "");
+
+        String[] partes = expresion.split("\\*");
+
+        if (partes.length != 2) {
+            salidadefinirmatrices.setText("Expresión inválida. Use formato: escalar*VectorID");
+            return;
+        }
+
+        String parte1 = partes[0];
+        String parte2 = partes[1];
+
+        int escalar;
+        String idVector;
+
+        if (parte1.matches("-?\\d+")) {
+            escalar = Integer.parseInt(parte1);
+            idVector = parte2.replace("Vector", "");
+        } else if (parte2.matches("-?\\d+")) {
+            escalar = Integer.parseInt(parte2);
+            idVector = parte1.replace("Vector", "");
+        } else {
+            salidadefinirmatrices.setText("No se encontró un escalar válido en la expresión.");
+            return;
+        }
+
+        if (!vector.containsKey(idVector)) {
+            salidadefinirmatrices.setText("No existe el vector " + idVector);
+            return;
+        }
+
+        int[] vecOriginal = vector.get(idVector);
+        int[] resultado = new int[vecOriginal.length];
+
+        for (int i = 0; i < vecOriginal.length; i++) {
+            resultado[i] = vecOriginal[i] * escalar;
+        }
+
+        salidadefinirmatrices.setText("Resultado de " + escalar + " * Vector" + idVector + ": " + Arrays.toString(resultado));
     }
 
-    private void procesarcvecSR(String texto, char c) {
-    }
 
+    void mvec1() {
+        if (vector.containsKey("A")) {
+            pantalla.setText(pantalla.getText() + "VectorA");
+        }
+
+    }
+    void mvec2() {
+        if (vector.containsKey("B")) {
+            pantalla.setText(pantalla.getText() + "VectorB");
+        }
+    }
+    void mvec3() {
+        if (vector.containsKey("C")) {
+            pantalla.setText(pantalla.getText() + "VectorC");
+        }
+    }
 
     private void procesarmatDet() {
     }
@@ -958,12 +1225,7 @@ public class Controlador {
     }
 
 
-    public void mvectores(ActionEvent actionEvent) {
-        salidadefinirmatrices.setText("");
-        modoActual = Modo.vectores;
-        modoleyenda.setText("Modo vectores");
-        ocultarSubmenus();
-    }
+
 
 
 

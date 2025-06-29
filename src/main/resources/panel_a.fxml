@@ -15,7 +15,7 @@
     <Button fx:id="btnresultado" layoutX="172.0" layoutY="293.0" mnemonicParsing="false" onAction="#mbtnresultado" styleClass="panel-boton" text="=" textAlignment="CENTER" />
     <Button fx:id="btnsuma" layoutX="150.0" layoutY="256.0" mnemonicParsing="false" onAction="#mbtnsuma" styleClass="panel-boton" text="+" textAlignment="CENTER" />
     <Button fx:id="btn7" layoutX="40.0" layoutY="180.0" mnemonicParsing="false" onAction="#mbtn7" styleClass="panel-boton" text="7" textAlignment="CENTER" />
-    <Button fx:id="btnans" layoutX="142.0" layoutY="92.0" mnemonicParsing="false" onAction="#mbtnresultado" styleClass="panel-boton" text="ANS" textAlignment="CENTER" />
+    <Button fx:id="btnans" layoutX="142.0" layoutY="92.0" mnemonicParsing="false" onAction="#btnans" styleClass="panel-boton" text="ANS" textAlignment="CENTER" />
     <Button fx:id="btn2" layoutX="87.0" layoutY="257.0" mnemonicParsing="false" onAction="#mbtn2" styleClass="panel-boton" text="2" textAlignment="CENTER" />
     <Button fx:id="btndiv" layoutX="172.0" layoutY="218.0" mnemonicParsing="false" onAction="#mbtndiv" styleClass="panel-boton" text="÷" textAlignment="CENTER" />
     <Button fx:id="btnmenos" layoutX="174.0" layoutY="256.0" mnemonicParsing="false" onAction="#mbtnmenos" styleClass="panel-boton" text="-" textAlignment="CENTER" />
