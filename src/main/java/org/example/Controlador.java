@@ -1,23 +1,20 @@
 package org.example;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.StackPane;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.IOException;
+import java.util.*;
 
 public class Controlador {
 
-    // Modo seleccionado
-    boolean modo_calculo = true;
-    boolean modo_vectores = false;
-    boolean modo_matrices = false;
-    boolean modo_ecuacion = false;
 
-
+    public Button vectores;
     // Modo ecuaciones
     boolean sis2x2 = true;
 
@@ -29,105 +26,7 @@ public class Controlador {
     private Label salidadefinirmatrices;
     @FXML
     private TextArea subMenu;
-    @FXML
-    private Button btn1;
 
-    @FXML
-    private Button btn2;
-
-    @FXML
-    private Button btn3;
-
-    @FXML
-    private Button btn4;
-
-    @FXML
-    public void mbtn1() {
-        pantalla.setText(pantalla.getText()+1);
-    }
-
-
-    /*#### Sistema de VECTORES ####*/
-    //Variables de vectores
-    private String vectorSelec;
-    private int[] vector;
-    private int indiceVector = 0;
-    @FXML
-    private Map<String, int[]> vectores = new HashMap<>();
-
-    public void mvectores() {
-        modoleyenda.setText("Modo vectores");
-        subMenu.setText(
-                "Definir Vector\n" +
-                        "1: VectorA\n" +
-                        "2: VectorB\n" +
-                        "3: VectorC\n" +
-                        "4: VectorD\n"
-        );
-        subMenu.setVisible(true);
-        subMenu.setManaged(true);
-    }
-    void seleccionarVector(Scene scene){
-        scene.setOnKeyPressed(keyEvent -> {
-            switch (keyEvent.getCode()) {
-                case DIGIT1 -> definirVector("A");
-                case DIGIT2 -> definirVector("B");
-                case DIGIT3 -> definirVector("C");
-                case DIGIT4 -> definirVector("D");
-            }
-        });
-
-        btn1.setOnAction(e -> definirVector("A"));
-        btn2.setOnAction(e -> definirVector("B"));
-        btn3.setOnAction(e -> definirVector("C"));
-        btn4.setOnAction(e -> definirVector("D"));
-    }
-    private void definirVector(String vectorId) {
-        vectorSelec = vectorId;
-        salidadefinirmatrices.setText("Definir Vector " + vectorId + "\nIngrese la cantidad de elementos:");
-        pantalla.setOnAction(e -> {
-            try {
-                int dimension = Integer.parseInt(pantalla.getText());
-                pantalla.clear();
-                crearVector(vectorId, dimension);
-            } catch (NumberFormatException ex) {
-                salidadefinirmatrices.setText("Error");
-                pantalla.clear();
-            }
-        });
-    }
-    private void crearVector(String vectorId, int dimension) {
-        vector = new int[dimension];
-        indiceVector = 0;
-
-        salidadefinirmatrices.setText("Ingrese los elementos del vector " + vectorId + " (" + dimension + " valores):");
-
-        pantalla.setOnAction(e -> {
-            try {
-                int valor = Integer.parseInt(pantalla.getText());
-                pantalla.clear();
-
-                vector[indiceVector++] = valor;
-
-                if (indiceVector == dimension) {
-                    vectores.put(vectorId, vector);
-                    pantalla.setOnAction(null);
-                    mostrarVector(vector);
-                }
-            } catch (NumberFormatException ex) {
-                salidadefinirmatrices.setText("Error");
-                pantalla.clear();
-            }
-        });
-    }
-    private void mostrarVector(int[] v) {
-        StringBuilder sb = new StringBuilder("Vector ingresado:\n");
-        for (int i = 0; i < v.length; i++) {
-            sb.append(v[i]).append(" ");
-        }
-        salidadefinirmatrices.setText(sb.toString());
-    }
-    /*#### FIN de VECTORES####*/
 
     /*#### Sistema de MATRICES ####*/
     /*Variables para matrices*/
@@ -166,10 +65,6 @@ public class Controlador {
                 }
 
         );
-        btn1.setOnAction(e -> definirMatriz("A"));
-        btn2.setOnAction(e -> definirMatriz("B"));
-        btn3.setOnAction(e -> definirMatriz("C"));
-        btn4.setOnAction(e -> definirMatriz("D"));
     }
 
     private void definirMatriz(String matrizid) { //DEFINIR DIMENSIONES
@@ -407,10 +302,6 @@ public class Controlador {
     public void mecuaciones() {
         modoleyenda.setText("Modo ecuaciones");
 
-        modo_ecuacion = true;
-        modo_calculo = false;
-        modo_matrices = false;
-        modo_vectores = false;
 
         ocultarSubmenus();
 
@@ -744,70 +635,17 @@ public class Controlador {
     public void mcalculos() {
         modoleyenda.setText("Modo calculos");
 
-        modo_ecuacion = false;
-        modo_calculo = true;
-        modo_matrices = false;
-        modo_vectores = false;
 
         ocultarSubmenus();
     }
 
-    public void mbtn4() {
-        pantalla.setText(pantalla.getText() + 4);
-    }
 
-    public void mbtn2() {
-        pantalla.setText(pantalla.getText() + 2);
-    }
-
-    public void mbtn5() {
-        pantalla.setText(pantalla.getText() + 5);
-    }
-
-    public void mbtn7() {
-        pantalla.setText(pantalla.getText() + 7);
-    }
-
-    public void mbtn0() {
-        pantalla.setText(pantalla.getText() + 0);
-    }
-
-    public void mbtn8() {
-        pantalla.setText(pantalla.getText() + 8);
-    }
-
-    public void mbtncoma() {
-        pantalla.setText(pantalla.getText() + ",");
-    }
-
-    public void mbtn3() {
-        pantalla.setText(pantalla.getText() + 3);
-    }
-
-    public void mbtn6() {
-        pantalla.setText(pantalla.getText() + 6);
-    }
-
-    public void mbtndel() {
-        String texto = pantalla.getText();
-        if (!texto.isEmpty()) {
-            pantalla.setText(texto.substring(0, texto.length() - 1));
-        }
-    }
-
-    public void mbtnmult() {
-        pantalla.setText(pantalla.getText() + "*");
-    }
-
-    public void mbtn9() {
-        pantalla.setText(pantalla.getText() + 9);
-    }
 
 
     public void mbtnresultado() {
 
 
-        if(modo_calculo){
+        if(modoleyenda.getText() == "Modo calculo"){
             if(pantalla.getText().contains("-")){
             procesarcalR();
         }else if(pantalla.getText().contains("+")){
@@ -822,9 +660,9 @@ public class Controlador {
             procesarcalP();
         }
 
-        }else if(modo_vectores){
+        }else if(modoleyenda.getText()=="Modo vectores"){
 
-        } else if(modo_matrices){
+        } else if(modoleyenda.getText()=="Modo matrices"){
             if(pantalla.getText().contains("-")){
                 procesarmatR();
             }else if(pantalla.getText().contains("+")){
@@ -839,7 +677,7 @@ public class Controlador {
                 procesarmatInv();
             }
 
-        }else if(modo_ecuacion){
+        }else if(modoleyenda.getText()=="Modo ecuaciones"){
 
             if(sis2x2){
                 resolverSistema2x2();
@@ -860,57 +698,57 @@ public class Controlador {
     private void procesarmatD() {
     }
 
-    public void mbtnsuma() {
-        pantalla.setText(pantalla.getText() + "+");
-    }
-
-    public void mbtnac() {
-        pantalla.clear();
-    }
-
-    public void mbtndiv() {
-        pantalla.setText(pantalla.getText() + "/");
-    }
-
-    public void mbtnmenos() {
-        pantalla.setText(pantalla.getText() + "-");
-    }
-
     public void mbtnon() {
     }
 
-    @FXML
-    public void initialize() {
-        pantalla.sceneProperty().addListener((obs, oldScene, newScene) -> {
-            if (newScene != null) {
-                newScene.setOnKeyPressed(event -> {
-                    switch (event.getCode()) {
-                        case DIGIT9, NUMPAD9 -> mbtn9();
-                        case DIGIT8, NUMPAD8 -> mbtn8();
-                        case DIGIT7, NUMPAD7 -> mbtn7();
-                        case DIGIT6, NUMPAD6 -> mbtn6();
-                        case DIGIT5, NUMPAD5 -> mbtn5();
-                        case DIGIT4, NUMPAD4 -> mbtn4();
-                        case DIGIT3, NUMPAD3 -> mbtn3();
-                        case DIGIT2, NUMPAD2 -> mbtn2();
-                        case DIGIT1, NUMPAD1 -> mbtn1();
-                        case ENTER -> mbtnresultado();
-                        case ESCAPE -> mbtnac();
-                        case DELETE -> mbtndel();
-
-                    }
-                    ;
-                    String texto = event.getText();
-                    switch (texto) {
-                        case "+" -> mbtnsuma();
-                        case "-" -> mbtnmenos();
-                        case "*" -> mbtnmult();
-                        case "/" -> mbtndiv();
-                        case "=" -> mbtnresultado();
-                        case "," -> mbtncoma();
-                    }
-                });
-            }
-        });
+    public void initialize(){
+        mostrarPanelA();
     }
-}
+
+
+    public void mvectores(ActionEvent actionEvent) {
+    }
+
+
+
+    @FXML
+    private StackPane contenedorVistas;
+
+    private Parent panel_a;
+    private Parent panel_b;
+
+    @FXML
+    private void mostrarPanelA() {
+        System.out.println("mostrarPanelA() llamado");
+        try {
+            if (panel_a == null) {
+                System.out.println("Cargando panel_a");
+                FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/panel_a.fxml")));
+                panel_a = loader.load();
+
+                Controladorpanela controladorPanelA = loader.getController();
+                controladorPanelA.setPantalla(pantalla);
+
+                System.out.println("panel_a cargado: " + panel_a);
+            }
+            contenedorVistas.getChildren().clear();
+            contenedorVistas.getChildren().add(panel_a);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    @FXML
+    private void mostrarPanelB() {
+        try {
+            if (panel_b == null) {
+                panel_b = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/main/resources/panel_b.fxml")));
+            }
+            contenedorVistas.getChildren().clear();
+            contenedorVistas.getChildren().add(panel_b);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }}

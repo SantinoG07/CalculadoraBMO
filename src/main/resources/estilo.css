@@ -1,0 +1,209 @@
+/* CONTENEDOR PRINCIPAL */
+.contenedor {
+    -fx-pref-width: 850;
+    -fx-pref-height: 450;
+    -fx-background-color: #23895A;
+    -fx-border-color: black;
+    -fx-border-width: 5;
+    -fx-background-radius: 35;
+    -fx-border-radius: 35;
+}
+
+/* PANEL CALCULADORA */
+.calculadora {
+    -fx-pref-width: 90%;
+    -fx-pref-height: 90%;
+    -fx-hgap: 30;
+    -fx-vgap: 30;
+}
+
+/* CONTENEDORES DE COLUMNA */
+.a, .b {
+    -fx-spacing: 20;
+}
+
+.b {
+    -fx-alignment: center;
+}
+
+/* MONITOR */
+.monitor {
+    -fx-pref-width: 450;
+    -fx-pref-height: 200;
+    -fx-background-color: #9de3c5;
+    -fx-background-radius: 10;
+    -fx-border-color: black;
+    -fx-border-width: 4;
+    -fx-border-radius: 10;
+}
+
+/* INSERCIÓN NEGRA */
+.insert {
+    -fx-background-color: black;
+    -fx-pref-width: 400;
+    -fx-pref-height: 15;
+    -fx-margin: 0 30 0 30; /* No se aplica directamente en JavaFX */
+}
+
+/* SECCIÓN CALCULADORA */
+.calc {
+    -fx-spacing: 30;
+    -fx-padding: 30 20 30 20;
+}
+
+/* PANEL DE BOTONES */
+.botones {
+    -fx-background-color: #66a07f;
+    -fx-pref-height: 300;
+    -fx-background-radius: 10;
+    -fx-border-color: black;
+    -fx-border-width: 4;
+    -fx-border-radius: 10;
+}
+
+/* FILA DE BOTONES NUMÉRICOS */
+.num {
+    -fx-spacing: 10;
+    -fx-padding: 10 0 0 0;
+}
+
+/* BOTÓN DE CÁLCULO */
+.calculo {
+    -fx-pref-width: 80;
+    -fx-pref-height: 80;
+    -fx-border-color: black;
+    -fx-border-width: 4;
+}
+
+/* BOTÓN TRIANGULAR (basicas) */
+#basicas {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    /* JavaFX no soporta bordes triangulares directamente */
+}
+
+/* IMAGEN EN BASICAS */
+#basicas ImageView {
+    -fx-fit-width: 40;
+    -fx-translate-y: 35;
+    -fx-translate-x: -20;
+    -fx-background-radius: 10;
+}
+
+/* BOTÓN VECTOR */
+#vector {
+    -fx-background-color: red;
+    -fx-background-radius: 40;
+}
+
+/* IMAGEN EN VECTOR */
+#vector ImageView {
+    -fx-fit-width: 70;
+    -fx-translate-x: -10;
+    -fx-translate-y: -10;
+}
+
+/* BOTÓN MATRIZ */
+#matriz {
+    -fx-background-color: rgb(40, 194, 40);
+}
+
+/* IMAGEN EN MATRIZ */
+#matriz ImageView {
+    -fx-fit-width: 70;
+    -fx-translate-x: -10;
+    -fx-translate-y: -10;
+}
+
+/* BOTÓN SISTEMAS */
+#sistemas {
+    -fx-background-color: goldenrod;
+    -fx-rotate: 45;
+}
+
+/* IMAGEN EN SISTEMAS */
+#sistemas ImageView {
+    -fx-fit-width: 70;
+    -fx-translate-x: -10;
+    -fx-translate-y: -10;
+}
+
+/* BOTONES NUMÉRICOS */
+.numeros {
+    -fx-pref-width: 120;
+    -fx-pref-height: 40;
+    -fx-border-color: black;
+    -fx-border-width: 4;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+}
+
+/* FONDOS DE BOTONES NUMÉRICOS */
+#numeros {
+    -fx-background-color: gold;
+}
+
+/* FONDOS DE BOTONES DE SIGNOS */
+#signos {
+    -fx-background-color: darkgoldenrod;
+}
+
+/* === BOTONES DE MODO === */
+#btnvectores {
+    -fx-background-color: red;
+    -fx-background-radius: 40;
+    -fx-border-radius: 40;
+    -fx-border-color: black;
+    -fx-border-width: 4;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0.5, 0, 2);
+}
+#btnmatrices {
+    -fx-background-color: #58d68d; /* verde menta */
+    -fx-background-radius: 20;
+    -fx-font-size: 14px;
+    -fx-text-fill: black;
+}
+
+#btnecuaciones {
+    -fx-background-color: goldenrod;
+    -fx-background-radius: 10;
+    -fx-border-color: black;
+    -fx-border-width: 3;
+    -fx-rotate: 45;
+    -fx-pref-width: 80px;
+    -fx-pref-height: 80px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 5, 0.5, 0, 2);
+    -fx-padding: 0;
+}
+
+
+#btncalculos {
+    -fx-background-color: #5dade2;
+    -fx-background-radius: 40;
+    -fx-border-radius: 40;
+    -fx-border-color: black;
+    -fx-border-width: 4;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0.5, 0, 2);
+}
+
+.boton-triangulo {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-border-color: transparent;
+    -fx-shape: "M 0 80 L 40 0 L 80 80 Z"; /* path SVG para triángulo */
+    -fx-background-color: gold;
+    -fx-border-color: black;
+    -fx-border-width: 3;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-min-width: 80px;
+    -fx-min-height: 80px;
+}
+
