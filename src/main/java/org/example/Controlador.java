@@ -13,6 +13,9 @@ import java.util.*;
 
 public class Controlador {
     private String ultimoResultado = "";
+    public String getUltimoResultado() {
+        return ultimoResultado;
+    }
 
     public Button vectores;
     // Modo ecuaciones
