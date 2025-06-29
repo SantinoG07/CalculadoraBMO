@@ -49,6 +49,7 @@ public class Controlador {
     private int columnaA = 0;
 
     public void mmatrices() { //SUBMENU
+        salidadefinirmatrices.setText("");
         modoActual = Modo.matrices;
         modoleyenda.setText("Modo matrices");
         salidadefinirmatrices.setText(
@@ -163,6 +164,23 @@ public class Controlador {
         if (matrices.containsKey("D")) {
             pantalla.setText(pantalla.getText() + "MatrizD");
         }
+    }
+
+    public void mpot() {
+        pantalla.setText(pantalla.getText() + "^");
+    }
+
+    public void mraiz() {
+        pantalla.setText(pantalla.getText() + "√");
+    }
+    public void mdet() {
+        pantalla.setText(pantalla.getText() + "Det(");
+    }
+    public void minv() {
+        pantalla.setText(pantalla.getText() + "Inv(");
+    }
+    public void mparen() {
+        pantalla.setText(pantalla.getText() + ")");
     }
 
 
@@ -315,6 +333,7 @@ public class Controlador {
 
     @FXML
     public void mecuaciones() {
+        salidadefinirmatrices.setText("");
         modoActual = Modo.ecuaciones;
         modoleyenda.setText("Modo ecuaciones");
 
@@ -652,6 +671,7 @@ public class Controlador {
         ocultarCampos3x3();
     }
     public void mcalculos() {
+        salidadefinirmatrices.setText("");
         modoActual = Modo.calculos;
         modoleyenda.setText("Modo calculos");
 
@@ -724,8 +744,6 @@ public class Controlador {
     private void procesarmatD() {
     }
 
-    public void mbtnon() {
-    }
 
     public void initialize(){
         mostrarPanelA();
@@ -733,6 +751,7 @@ public class Controlador {
 
 
     public void mvectores(ActionEvent actionEvent) {
+        salidadefinirmatrices.setText("");
         modoActual = Modo.vectores;
         modoleyenda.setText("Modo vectores");
         ocultarSubmenus();
@@ -750,21 +769,17 @@ public class Controlador {
     private Parent panel_a;
     private Parent panel_b;
 
+    // En controlador principal
+
     @FXML
     private void mostrarPanelA() {
-        System.out.println("mostrarPanelA() llamado");
         try {
             if (panel_a == null) {
-                System.out.println("Cargando panel_a");
-                FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/panel_a.fxml")));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/panel_a.fxml"));
                 panel_a = loader.load();
-
                 Controladorpanela controladorPanelA = loader.getController();
                 controladorPanelA.setPantalla(pantalla);
                 controladorPanelA.setControladorPadre(this);
-
-
-                System.out.println("panel_a cargado: " + panel_a);
             }
             contenedorVistas.getChildren().clear();
             contenedorVistas.getChildren().add(panel_a);
@@ -773,17 +788,25 @@ public class Controlador {
         }
     }
 
-
-
     @FXML
     private void mostrarPanelB() {
         try {
             if (panel_b == null) {
-                panel_b = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/main/resources/panel_b.fxml")));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/panel_b.fxml"));
+                panel_b = loader.load();
+                Controladorpanelb controladorPanelB = loader.getController();
+                controladorPanelB.setPantalla(pantalla);
+                controladorPanelB.setControladorPadre(this);
             }
             contenedorVistas.getChildren().clear();
             contenedorVistas.getChildren().add(panel_b);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void onVolverPanelA(ActionEvent event) {
+        mostrarPanelA();
     }}
+

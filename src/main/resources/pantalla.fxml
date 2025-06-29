@@ -15,13 +15,10 @@
       <children>
          <TextField fx:id="pantalla" layoutX="35.0" layoutY="65.0" prefHeight="108.0" prefWidth="572.0" styleClass="monitor" stylesheets="@estilo.css" />
          <Label fx:id="modoleyenda" layoutX="60.0" layoutY="70.0" style="-fx-text-fill: gray; -fx-font-size: 30;" text="" />
-            <Button fx:id="btnon" layoutX="959.0" layoutY="32.0" mnemonicParsing="false" onAction="#mbtnon" text="ON" textAlignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-            <TextArea fx:id="subMenu" layoutX="20.0" layoutY="260.0" managed="false" prefHeight="120" prefWidth="300" style="-fx-font-size:14;" visible="false" wrapText="true" />
+
          <Label fx:id="salidadefinirmatrices" layoutX="35.0" layoutY="35.0" style="-fx-text-fill: gray; -fx-font-size: 20;" text="" />
+
+         <Button fx:id="" layoutX="300.0" layoutY="600.0" text="" styleClass="insert" onAction="#mostrarPanelB" />
 
 
 
@@ -31,19 +28,20 @@
             </font>
          </Button>
 
-         <Button id="btnmatrices" fx:id="btnmatrices" layoutX="170.0" layoutY="740.0" mnemonicParsing="false" onAction="#mmatrices" styleClass="calculo" text="Matrices" textAlignment="CENTER">
+            <Button id="btnmatrices" fx:id="btnmatrices" layoutX="170.0" layoutY="740.0" mnemonicParsing="false" onAction="#mmatrices" styleClass="calculo" text="Matrices" textAlignment="CENTER">
             <font>
                <Font name="System Bold" size="12.0" />
             </font>
          </Button>
 
-         <Button fx:id="btnecuaciones" layoutX="290.0" layoutY="740.0" mnemonicParsing="false" styleClass="rombo">
+         <Button fx:id="btnecuaciones" onAction="#mecuaciones" layoutX="290.0" layoutY="740.0" mnemonicParsing="false" styleClass="rombo">
             <graphic>
                <StackPane>
                   <Label style="-fx-rotate: -45; -fx-text-fill: black; -fx-font-weight: bold;" text="Ecuaciones" />
                </StackPane>
             </graphic>
          </Button>
+         <TextArea fx:id="subMenu" layoutX="20.0" layoutY="260.0" prefWidth="300" prefHeight="120" wrapText="true" visible="false" managed="false" style="-fx-font-size:14;"/>
 
          <Button fx:id="btncalculos" layoutX="410.0" layoutY="740.0" mnemonicParsing="false" onAction="#mcalculos" styleClass="boton-triangulo" />
 
@@ -51,7 +49,12 @@
 
          <StackPane fx:id="contenedorVistas" layoutX="1100" layoutY="30.0" prefHeight="320.0" prefWidth="600" styleClass="botones" />
 
-         </children>
+         <Button fx:id="btnPanelA" layoutX="1270.0" layoutY="740.0" text="" styleClass="numeros" onAction="#mostrarPanelA" />
+         <Button fx:id="btnPanelB" layoutX="1400.0" layoutY="740.0" text="" styleClass="numeros" onAction="#mostrarPanelB" />
+         <Button fx:id="btnSistema2x2" onAction="#mostrarCampos2x2" layoutX="100" layoutY="300" text="Sistema 2x2" visible="false" />
+         <Button fx:id="btnSistema3x3" onAction="#mostrarCampos3x3" layoutX="200" layoutY="300" text="Sistema 3x3" visible="false" />
+
+      </children>
 
       </Pane>
    </children>

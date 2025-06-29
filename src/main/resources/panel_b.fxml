@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="org.example.Controlador"
+      fx:controller="org.example.Controladorpanelb"
       spacing="10" alignment="CENTER">
     <Button fx:id="vec1" layoutX="531.0" layoutY="580.0" mnemonicParsing="false" onAction="#mmat1" text="MatrizA"
             textAlignment="CENTER"/>
@@ -17,4 +17,9 @@
 
     <Button fx:id="vec4" layoutX="249.0" layoutY="661.0" mnemonicParsing="false" onAction="#mmat4" text="MAtrizD"
             textAlignment="CENTER"/>
+    <Button text="^" onAction="#agregarPotencia"/>
+    <Button text="√" onAction="#agregarRaiz"/>
+    <Button text="Det(" onAction="#agregarDet"/>
+    <Button text="Inv(" onAction="#agregarInv"/>
+    <Button text=")" onAction="#agregarParen"/>
 </VBox>

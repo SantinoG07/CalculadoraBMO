@@ -4,49 +4,31 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<VBox xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="org.example.Controladorpanela"
-      spacing="10" alignment="CENTER" >
-
-    <Button fx:id="btnmult" mnemonicParsing="false" onAction="#mbtnmult" styleClass="a" stylesheets="@estilo.css"
-            text="X" textAlignment="CENTER"/>
-
-    <Button fx:id="btncoma" mnemonicParsing="false" onAction="#mbtncoma" text="," textAlignment="CENTER"/>
-
-    <Button fx:id="btn8" mnemonicParsing="false" onAction="#mbtn8" text="8" textAlignment="CENTER"/>
-
-    <Button fx:id="btn6" mnemonicParsing="false" onAction="#mbtn6" text="6" textAlignment="CENTER"/>
-
-    <Button fx:id="btn0" mnemonicParsing="false" onAction="#mbtn0" text="0" textAlignment="CENTER"/>
-
-    <Button fx:id="btn5" mnemonicParsing="false" onAction="#mbtn5" text="5" textAlignment="CENTER"/>
-
-    <Button fx:id="btn4" mnemonicParsing="false" onAction="#mbtn4" text="4" textAlignment="CENTER"/>
-
-    <Button fx:id="btn9" mnemonicParsing="false" onAction="#mbtn9" text="9" textAlignment="CENTER"/>
-
-    <Button fx:id="btnresultado" mnemonicParsing="false" onAction="#mbtnresultado" text="=" textAlignment="CENTER"/>
-
-    <Button fx:id="btnsuma" mnemonicParsing="false" onAction="#mbtnsuma" text="+" textAlignment="CENTER"/>
-
-    <Button fx:id="btn7" mnemonicParsing="false" onAction="#mbtn7" text="7" textAlignment="CENTER"/>
-
-    <Button fx:id="btnans" mnemonicParsing="false" onAction="#mbtnresultado" text="ANS" textAlignment="CENTER"/>
-
-    <Button fx:id="btn2" mnemonicParsing="false" onAction="#mbtn2" text="2" textAlignment="CENTER"/>
-
-    <Button fx:id="btndiv" mnemonicParsing="false" onAction="#mbtndiv" text="÷" textAlignment="CENTER"/>
-
-    <Button fx:id="btnmenos" mnemonicParsing="false" onAction="#mbtnmenos" text="-" textAlignment="CENTER"/>
-
-    <Button fx:id="btnac" minWidth="53.0" mnemonicParsing="false" onAction="#mbtnac" prefHeight="136.0" prefWidth="53.0"
-            styleClass="botones" stylesheets="@estilo.css" text="AC" textAlignment="CENTER"/>
-
-    <Button fx:id="btn3" mnemonicParsing="false" onAction="#mbtn3" text="3" textAlignment="CENTER"/>
-
-    <Button fx:id="btndel" mnemonicParsing="false" onAction="#mbtndel" text="DEL" textAlignment="CENTER"/>
+<?import javafx.scene.layout.Pane?>
+<Pane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.example.Controladorpanela">
+    <Button styleClass="panel-boton" fx:id="btnmult" mnemonicParsing="false" onAction="#mbtnmult"  stylesheets="@estilo.css"
+            text="*" textAlignment="CENTER"/>
+    <Button styleClass="panel-boton" fx:id="btncoma" mnemonicParsing="false" onAction="#mbtncoma" text="," textAlignment="CENTER"/>
+    <Button styleClass="panel-boton" fx:id="btn8" mnemonicParsing="false" onAction="#mbtn8" text="8" textAlignment="CENTER"/>
+    <Button styleClass="panel-boton" fx:id="btn6" mnemonicParsing="false" onAction="#mbtn6" text="6" textAlignment="CENTER"/>
+    <Button styleClass="panel-boton" fx:id="btn0" mnemonicParsing="false" onAction="#mbtn0" text="0" textAlignment="CENTER"/>
+    <Button styleClass="panel-boton" fx:id="btn5" mnemonicParsing="false" onAction="#mbtn5" text="5" textAlignment="CENTER"/>
+    <Button styleClass="panel-boton" fx:id="btn4" mnemonicParsing="false" onAction="#mbtn4" text="4" textAlignment="CENTER"/>
+    <Button styleClass="panel-boton" fx:id="btn9" mnemonicParsing="false" onAction="#mbtn9" text="9" textAlignment="CENTER"/>
+    <Button styleClass="panel-boton" fx:id="btnresultado" mnemonicParsing="false" onAction="#mbtnresultado" text="=" textAlignment="CENTER"/>
+    <Button styleClass="panel-boton" fx:id="btnsuma" mnemonicParsing="false" onAction="#mbtnsuma" text="+" textAlignment="CENTER"/>
+    <Button styleClass="panel-boton" fx:id="btn7" mnemonicParsing="false" onAction="#mbtn7" text="7" textAlignment="CENTER"/>
+    <Button styleClass="panel-boton" fx:id="btnans" mnemonicParsing="false" onAction="#mbtnresultado" text="ANS" textAlignment="CENTER"/>
+    <Button styleClass="panel-boton" fx:id="btn2" mnemonicParsing="false" onAction="#mbtn2" text="2" textAlignment="CENTER"/>
+    <Button styleClass="panel-boton" fx:id="btndiv" mnemonicParsing="false" onAction="#mbtndiv" text="÷" textAlignment="CENTER"/>
+    <Button styleClass="panel-boton" fx:id="btnmenos" mnemonicParsing="false" onAction="#mbtnmenos" text="-" textAlignment="CENTER"/>
+    <Button styleClass="panel-boton" fx:id="btnac" minWidth="53.0" mnemonicParsing="false" onAction="#mbtnac" prefHeight="136.0" prefWidth="53.0"
+             stylesheets="@estilo.css" text="AC" textAlignment="CENTER"/>
+    <Button styleClass="panel-boton" fx:id="btn3" mnemonicParsing="false" onAction="#mbtn3" text="3" textAlignment="CENTER"/>
+    <Button styleClass="panel-boton" fx:id="btndel" mnemonicParsing="false" onAction="#mbtndel" text="DEL" textAlignment="CENTER"/>
 
     <Button fx:id="btn1" minWidth="53.0" mnemonicParsing="false" onAction="#mbtn1" prefHeight="41.0" prefWidth="53.0"
-            styleClass="numeros" text="1" textAlignment="CENTER"/>
+            styleClass="panel-boton" text="1" textAlignment="CENTER"/>
 
-</VBox>
+</Pane>

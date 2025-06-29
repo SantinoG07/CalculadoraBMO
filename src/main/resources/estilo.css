@@ -134,18 +134,28 @@
     -fx-pref-height: 40;
     -fx-border-color: black;
     -fx-border-width: 4;
+    -fx-background-color:gold;
     -fx-background-radius: 30;
     -fx-border-radius: 30;
 }
 
-/* FONDOS DE BOTONES NUMÉRICOS */
-#numeros {
-    -fx-background-color: gold;
-}
 
 /* FONDOS DE BOTONES DE SIGNOS */
 #signos {
     -fx-background-color: darkgoldenrod;
+}
+
+
+.panel-boton {
+    -fx-background-color: #74ac94;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 8 9 8 9;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.25) , 3,0,0,1 );
+    -fx-cursor: hand;
 }
 
 
