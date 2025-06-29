@@ -16,7 +16,7 @@
             <TextField fx:id="pantalla" layoutX="35.0" layoutY="65.0" prefHeight="108.0" prefWidth="572.0" styleClass="monitor" stylesheets="@estilo.css" />
             <Label fx:id="modoleyenda" layoutX="60.0" layoutY="70.0" style="-fx-text-fill: gray; -fx-font-size: 30;" text="" />
 
-            <Label fx:id="salidadefinirmatrices" layoutX="35.0" layoutY="35.0" style="-fx-text-fill: gray; -fx-font-size: 20;" text="" />
+            <Label fx:id="salidadefinirmatrices" layoutX="55.0" layoutY="110.0" style="-fx-text-fill: black; -fx-font-weight: bold;-fx-font-size: 20;" text="" />
 
             <Button fx:id="" layoutX="300.0" layoutY="600.0" text="" styleClass="insert" onAction="#mostrarPanelB" />
 
