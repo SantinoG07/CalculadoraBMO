@@ -1,31 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Pane?>
 
-<VBox xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="org.example.Controladorpanelb"
-      spacing="10" alignment="CENTER">
-    <Button fx:id="mat1" layoutX="531.0" layoutY="580.0" mnemonicParsing="false" onAction="#mmat1" text="MatrizA"
+<Pane prefHeight="458.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controladorpanelb">
+
+
+
+    <Button layoutX="50.0" layoutY="20.0" text="^" styleClass="panel-boton" stylesheets="@estilo.css" onAction="#agregarPotencia"/>
+    <Button layoutX="50.0" layoutY="70.0" text="√" styleClass="panel-boton" stylesheets="@estilo.css" onAction="#agregarRaiz"/>
+    <Button layoutX="50.0" layoutY="120.0" text=")" styleClass="panel-boton" stylesheets="@estilo.css" onAction="#agregarParen"/>
+
+    <Button layoutX="100.0" layoutY="20.0" styleClass="panel-boton" stylesheets="@estilo.css" onAction="#mvec1" text="VectorA"
+            textAlignment="CENTER"/>
+    <Button layoutX="100.0" layoutY="70.0" styleClass="panel-boton" stylesheets="@estilo.css" onAction="#mvec2" text="VectorB"
+            textAlignment="CENTER"/>
+    <Button layoutX="100.0" layoutY="120.0" styleClass="panel-boton" stylesheets="@estilo.css" onAction="#mvec3" text="VectorC"
+            textAlignment="CENTER"/>
+    <Button layoutX="100.0" layoutY="170.0" styleClass="panel-boton" stylesheets="@estilo.css" onAction="#mvec4" text="VectorC"
             textAlignment="CENTER"/>
 
-    <Button fx:id="mat2" layoutX="419.0" layoutY="580.0" mnemonicParsing="false" onAction="#mmat2" text="MatrizB"
+
+    <Button layoutY="20.0" layoutX="200.0" styleClass="panel-boton" stylesheets="@estilo.css" onAction="#mmat1" text="MatrizA"
+            textAlignment="CENTER"/>
+    <Button layoutY="70.0" layoutX="200.0" styleClass="panel-boton" stylesheets="@estilo.css" onAction="#mmat2" text="MatrizB"
+            textAlignment="CENTER"/>
+    <Button layoutY="120.0" layoutX="200.0" styleClass="panel-boton" stylesheets="@estilo.css" onAction="#mmat3" text="MatrizC"
+            textAlignment="CENTER"/>
+    <Button layoutY="170.0" layoutX="200.0" styleClass="panel-boton" stylesheets="@estilo.css" onAction="#mmat4" text="MatrizD"
             textAlignment="CENTER"/>
 
-    <Button fx:id="mat3" layoutX="299.0" layoutY="574.0" mnemonicParsing="false" onAction="#mmat3" text="MatrizC"
-            textAlignment="CENTER"/>
+    <Button layoutY="220.0" layoutX="200.0" text="Det(" styleClass="panel-boton" stylesheets="@estilo.css" onAction="#agregarDet"/>
+    <Button layoutY="270.0" layoutX="200.0" text="Inv(" styleClass="panel-boton" stylesheets="@estilo.css" onAction="#agregarInv"/>
 
-    <Button fx:id="vec4" layoutX="249.0" layoutY="661.0" mnemonicParsing="false" onAction="#mmat4" text="MAtrizD"
-            textAlignment="CENTER"/>
-    <Button text="^" onAction="#agregarPotencia"/>
-    <Button text="√" onAction="#agregarRaiz"/>
-    <Button text="Det(" onAction="#agregarDet"/>
-    <Button text="Inv(" onAction="#agregarInv"/>
-    <Button text=")" onAction="#agregarParen"/>
-    <Button fx:id="vec1" layoutX="299.0" layoutY="574.0" mnemonicParsing="false" onAction="#mvec1" text="VectorA"
-            textAlignment="CENTER"/>
-    <Button fx:id="vec2" layoutX="299.0" layoutY="574.0" mnemonicParsing="false" onAction="#mvec2" text="VectorB"
-            textAlignment="CENTER"/>
-    <Button fx:id="vec3" layoutX="299.0" layoutY="574.0" mnemonicParsing="false" onAction="#mvec3" text="VectorC"
-            textAlignment="CENTER"/>
-</VBox>
+
+
+
+</Pane>

@@ -31,7 +31,6 @@ public class Controlador {
     private TextArea subMenu;
 
 
-
     private enum Modo {
         vectores, matrices, ecuaciones, calculos
     }
@@ -974,23 +973,30 @@ public class Controlador {
                         "1: VectorA\n" +
                         "2: VectorB\n" +
                         "3: VectorC\n" +
-                        "4: VectorD\n"
+                        "4: VectorD\n" +
+                        "Ingrese por teclado qué vector rellenará"
         );
         seleccionarvector(pantalla.getScene());
     }
 
     void seleccionarvector(Scene scene) { //Usamos el Scene porque vendria a ser una grabacion de la escena o pantalla que ve el usuario, se usa para esperar que este presione una tecla o haga algo, asi lo almacenamos/usamos
-        scene.setOnKeyPressed(keyEvent -> { //Dentro de la escena, pedimos la tecla o accion hecha, kayevent para indicar que al presionar se ejecuta lo siguiente
+        pantalla.setOnAction(e -> {
 
-                    switch (keyEvent.getCode()) { //Getcode pide el ascii de la tecla presionada, keyevent es el hecho de presionar la tecla
-                        case DIGIT1 -> definirVector("A");
-                        case DIGIT2 -> definirVector("B");
-                        case DIGIT3 -> definirVector("C");
-                        case DIGIT4 -> definirVector("D");
-                    }
+            try {
+                int valor = Integer.parseInt(pantalla.getText());
+                pantalla.clear();
+
+                switch (valor) {
+                    case 1 -> definirVector("A");
+                    case 2 -> definirVector("B");
+                    case 3 -> definirVector("C");
+                    case 4 -> definirVector("D");
                 }
-
-        );
+            } catch(NumberFormatException ex) {
+                salidadefinirmatrices.setText("Error");
+                pantalla.clear();
+            }
+        });
     }
 
 
@@ -1231,6 +1237,12 @@ public class Controlador {
     void mvec3() {
         if (vector.containsKey("C")) {
             pantalla.setText(pantalla.getText() + "VectorC");
+        }
+    }
+
+    void mvec4() {
+        if (vector.containsKey("D")) {
+            pantalla.setText(pantalla.getText() + "VectorD");
         }
     }
 
