@@ -353,11 +353,132 @@ public class Controlador {
         mostrarMatriz(resultado);
     }
 
-
-
-
-
     /*#### FIN ####*/
+
+    /*#### Sistema de calculos ####*/
+    private void procesarcalS() {
+        try {
+            String[] numeros = pantalla.getText().replace(",", ".").split("\\+");
+            double resultado = 0;
+            for (String num : numeros) {
+                if (!num.isEmpty()) {
+                    resultado += Double.parseDouble(num);
+                }
+            }
+            pantalla.setText(String.valueOf(resultado));
+        } catch (NumberFormatException e) {
+            pantalla.setText("Error");
+        }
+    }
+    private void procesarcalR() {
+        try {
+            String[] numeros = pantalla.getText().replace(",", ".").split("\\-");
+            if (numeros.length == 0) {
+                pantalla.setText("Error");
+                return;
+            }
+
+            double resultado = Double.parseDouble(numeros[0]);
+            for (int i = 1; i < numeros.length; i++) {
+                if (!numeros[i].isEmpty()) {
+                    resultado -= Double.parseDouble(numeros[i]);
+                }
+            }
+
+            pantalla.setText(String.valueOf(resultado));
+        } catch (NumberFormatException e) {
+            pantalla.setText("Error");
+        }
+    }
+    private void procesarcalM() {
+        try {
+            String[] numeros = pantalla.getText().replace(",", ".").split("\\*");
+            double resultado = 1;
+            for (String num : numeros) {
+                if (!num.isEmpty()) {
+                    resultado *= Double.parseDouble(num);
+                }
+            }
+            pantalla.setText(String.valueOf(resultado));
+        } catch (NumberFormatException e) {
+            pantalla.setText("Error");
+        }
+    }
+    private void procesarcalD() {
+        try {
+            String[] numeros = pantalla.getText().replace(",", ".").split("/");
+            if (numeros.length == 0) {
+                pantalla.setText("Error");
+                return;
+            }
+
+            double resultado = Double.parseDouble(numeros[0]);
+            for (int i = 1; i < numeros.length; i++) {
+                double divisor = Double.parseDouble(numeros[i]);
+                if (divisor == 0) {
+                    pantalla.setText("No se puede dividir por cero");
+                    return;
+                }
+                resultado /= divisor;
+            }
+
+            pantalla.setText(String.valueOf(resultado));
+        } catch (NumberFormatException e) {
+            pantalla.setText("Error");
+        }
+    }
+    private void procesarcalP() {
+        try {
+            String[] numeros = pantalla.getText().replace(",", ".").split("\\^");
+            if (numeros.length != 2) {
+                pantalla.setText("Error");
+                return;
+            }
+            double base = Double.parseDouble(numeros[0]);
+            double exponente = Double.parseDouble(numeros[1]);
+            double resultado = Math.pow(base, exponente);
+            pantalla.setText(String.valueOf(resultado));
+        } catch (NumberFormatException e) {
+            pantalla.setText("Error");
+        }
+    }
+    private void procesarcalRaiz() {
+        try {
+            String texto = pantalla.getText().replace(",", ".");
+
+            int indiceRaiz = texto.indexOf("√");
+
+            if (indiceRaiz == -1 || indiceRaiz == texto.length() - 1) {
+                pantalla.setText("Error");
+                return;
+            }
+
+            int indice;
+            double radicando;
+
+            // asume raiz 2 si no se especifica
+            if (indiceRaiz == 0) {
+                indice = 2;
+            } else {
+                indice = Integer.parseInt(texto.substring(0, indiceRaiz));
+            }
+
+            radicando = Double.parseDouble(texto.substring(indiceRaiz + 1));
+
+            if (indice <= 0) {
+                pantalla.setText("Error");
+                return;
+            }
+
+            double resultado = Math.pow(radicando, 1.0 / indice);
+            pantalla.setText(String.valueOf(resultado));
+        } catch (Exception e) {
+            pantalla.setText("Error");
+        }
+    }
+    /*#### FIN ####*/
+
+
 
 
     public void mecuaciones() {
@@ -440,7 +561,19 @@ public class Controlador {
                 }
                 break;
             case "Modo ecuaciones":
-                procesarec();
+                if(pantalla.getText().contains("-")){
+                    procesarcalR();
+                }else if(pantalla.getText().contains("+")){
+                    procesarcalS();
+                }else if(pantalla.getText().contains("/")){
+                    procesarcalD();
+                }else if(pantalla.getText().contains("*")){
+                    procesarcalM();
+                }else if(pantalla.getText().contains("√")){
+                    procesarcalRaiz();
+                }else if(pantalla.getText().contains("^")){
+                    procesarcalP();
+                }
                 break;
             case "Modo calculos":
                 procesarcal();
@@ -521,10 +654,6 @@ public class Controlador {
         });
     }
 
-<<<<<<< HEAD
-
 
 }
-=======
-}
->>>>>>> a44ae06 (Agregando vectores a Controlador.java)
+
