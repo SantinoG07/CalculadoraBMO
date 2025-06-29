@@ -109,8 +109,15 @@ public class Controladorpanela {
         }
     }
 
-
-    @FXML private void btnans() {
-        // lógica futura
+    @FXML
+    private void btnans() {
+        if (controladorPadre != null) {
+            String ans = controladorPadre.getUltimoResultado();
+            if (ans != null && !ans.isEmpty()) {
+                agregarTexto(ans);
+            }
+        }
     }
+
+
 }

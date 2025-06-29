@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class Controlador {
-
+    private String ultimoResultado = "";
 
     public Button vectores;
     // Modo ecuaciones
@@ -223,6 +223,7 @@ public class Controlador {
         mostrarMatriz(resultado); // Mostramos el resultado
     }
 
+
     private void procesarmatR() {
         String expresion  = pantalla.getText();
         String[] mat= expresion.split("\\-"); //Convierte la expresion en una array con las matrices ingresadas
@@ -259,16 +260,111 @@ public class Controlador {
 
     }
 
-    private void procesarmatM() {
+    private void procesarmatD() {
         String expresion = pantalla.getText();
-        String[] mat = expresion.split("\\*");
+        String[] mat = expresion.split("/");
 
+        if (mat.length != 2) {
+            salidadefinirmatrices.setText("Formato incorrecto. Use MatrizA/MatrizB");
+            return;
+        }
 
         String id1 = mat[0].trim().replace("Matriz", "");
         String id2 = mat[1].trim().replace("Matriz", "");
 
+        if (!matrices.containsKey(id1) || !matrices.containsKey(id2)) {
+            salidadefinirmatrices.setText("Una de las matrices no existe.");
+            return;
+        }
 
         int[][] m1 = matrices.get(id1);
+        int[][] m2 = matrices.get(id2);
+
+        int filas1 = m1.length;
+        int columnas1 = m1[0].length;
+        int filas2 = m2.length;
+        int columnas2 = m2[0].length;
+
+        if (filas2 != columnas2) {
+            salidadefinirmatrices.setText("La segunda matriz debe ser cuadrada para calcular la inversa.");
+            return;
+        }
+
+        int det = determinante(m2, filas2);
+        if (det == 0) {
+            salidadefinirmatrices.setText("La segunda matriz no tiene inversa.");
+            return;
+        }
+
+        int[][] adj = adjunta(m2, filas2);
+        float[][] inversa = new float[filas2][columnas2];
+
+        for (int i = 0; i < filas2; i++) {
+            for (int j = 0; j < columnas2; j++) {
+                inversa[i][j] = (float) adj[i][j] / det;
+            }
+        }
+
+        if (columnas1 != filas2) {
+            salidadefinirmatrices.setText("Columnas de la primera matriz deben coincidir con filas de la inversa.");
+            return;
+        }
+
+        float[][] resultado = new float[filas1][columnas2];
+
+        for (int i = 0; i < filas1; i++) {
+            for (int j = 0; j < columnas2; j++) {
+                for (int k = 0; k < columnas1; k++) {
+                    resultado[i][j] += m1[i][k] * inversa[k][j];
+                }
+            }
+        }
+
+        mostrarMatrizFloat(resultado);
+    }
+
+    private void procesarmatM() {
+        String expresion = pantalla.getText().replaceAll(" ", "");
+        String[] mat = expresion.split("\\*");
+
+        if (mat.length != 2) {
+            salidadefinirmatrices.setText("Formato incorrecto. Use MatrizA*MatrizB o MatrizA*escalar");
+            return;
+        }
+
+        String id1 = mat[0].trim().replace("Matriz", "");
+        String segundo = mat[1].trim();
+
+        if (!matrices.containsKey(id1)) {
+            salidadefinirmatrices.setText("La primera matriz no existe.");
+            return;
+        }
+
+        int[][] m1 = matrices.get(id1);
+        try {
+            float escalar = Float.parseFloat(segundo);
+
+            int filas = m1.length;
+            int columnas = m1[0].length;
+            float[][] resultado = new float[filas][columnas];
+
+            for (int i = 0; i < filas; i++) {
+                for (int j = 0; j < columnas; j++) {
+                    resultado[i][j] = m1[i][j] * escalar;
+                }
+            }
+            mostrarMatrizFloat(resultado);
+            return;
+
+        } catch (NumberFormatException e) {
+        }
+
+        String id2 = segundo.replace("Matriz", "");
+        if (!matrices.containsKey(id2)) {
+            salidadefinirmatrices.setText("La segunda matriz no existe.");
+            return;
+        }
+
         int[][] m2 = matrices.get(id2);
 
         int filas1 = m1.length;
@@ -294,9 +390,101 @@ public class Controlador {
         mostrarMatriz(resultado);
     }
 
+    private void mostrarMatrizFloat(float[][] m) {
+        StringBuilder sb = new StringBuilder("Matriz inversa:\n");
+        for (float[] fila : m) {
+            for (float val : fila) {
+                sb.append(String.format("%.2f", val)).append("\t");
+            }
+            sb.append("\n");
+        }
+        salidadefinirmatrices.setText(sb.toString());
+    }
+    private void procesarmatInv() {
+        String expresion = pantalla.getText(); // Esperás algo como Inv(MatrizA)
+        String id = expresion.replace("Inv(", "").replace(")", "").replace("Matriz", "").trim();
 
+        if (!matrices.containsKey(id)) {
+            salidadefinirmatrices.setText("La matriz no existe.");
+            return;
+        }
 
+        int[][] A = matrices.get(id);
+        int n = A.length;
+        if (A[0].length != n) {
+            salidadefinirmatrices.setText("La matriz no es cuadrada.");
+            return;
+        }
 
+        int det = determinante(A, n);
+        if (det == 0) {
+            salidadefinirmatrices.setText("La matriz no tiene inversa.");
+            return;
+        }
+
+        int[][] adj = adjunta(A, n);
+        float[][] inversa = new float[n][n];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                inversa[i][j] = (float) adj[i][j] / det;
+            }
+        }
+        mostrarMatrizFloat(inversa);
+    }
+
+    private int[][] adjunta(int[][] A, int n) {
+        int[][] adj = new int[n][n];
+        if (n == 1) {
+            adj[0][0] = 1;
+            return adj;
+        }
+
+        int signo = 1;
+        int[][] temp = new int[n-1][n-1];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                getCofactor(A, temp, i, j, n);
+                signo = ((i + j) % 2 == 0) ? 1 : -1;
+                adj[j][i] = signo * determinante(temp, n - 1); // Traspuesta
+            }
+        }
+        return adj;
+
+    }
+
+    private int determinante(int[][] matriz, int n) {
+        if (n == 1) return matriz[0][0];
+
+        int det = 0;
+        int[][] temp = new int[n-1][n-1];
+        int signo = 1;
+
+        for (int f = 0; f < n; f++) {
+            getCofactor(matriz, temp, 0, f, n);
+            det += signo * matriz[0][f] * determinante(temp, n - 1);
+            signo = -signo;
+        }
+
+        return det;
+    }
+    private void getCofactor(int[][] mat, int[][] temp, int p, int q, int n) {
+        int row = 0, col = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (i == p) continue;
+
+            col = 0;
+            for (int j = 0; j < n; j++) {
+                if (j == q) continue;
+
+                temp[row][col] = mat[i][j];
+                col++;
+            }
+            row++;
+        }
+    }
 
     /*#### FIN ####*/
 
@@ -539,6 +727,7 @@ public class Controlador {
                 }
             }
             pantalla.setText(String.valueOf(resultado));
+            ultimoResultado = String.valueOf(resultado);
         } catch (NumberFormatException e) {
             pantalla.setText("Error");
         }
@@ -557,8 +746,9 @@ public class Controlador {
                     resultado -= Double.parseDouble(numeros[i]);
                 }
             }
-
             pantalla.setText(String.valueOf(resultado));
+            ultimoResultado = String.valueOf(resultado);
+
         } catch (NumberFormatException e) {
             pantalla.setText("Error");
         }
@@ -573,6 +763,8 @@ public class Controlador {
                 }
             }
             pantalla.setText(String.valueOf(resultado));
+            ultimoResultado = String.valueOf(resultado);
+
         } catch (NumberFormatException e) {
             pantalla.setText("Error");
         }
@@ -594,8 +786,9 @@ public class Controlador {
                 }
                 resultado /= divisor;
             }
-
             pantalla.setText(String.valueOf(resultado));
+            ultimoResultado = String.valueOf(resultado);
+
         } catch (NumberFormatException e) {
             pantalla.setText("Error");
         }
@@ -611,6 +804,8 @@ public class Controlador {
             double exponente = Double.parseDouble(numeros[1]);
             double resultado = Math.pow(base, exponente);
             pantalla.setText(String.valueOf(resultado));
+            ultimoResultado = String.valueOf(resultado);
+
         } catch (NumberFormatException e) {
             pantalla.setText("Error");
         }
@@ -645,6 +840,7 @@ public class Controlador {
 
             double resultado = Math.pow(radicando, 1.0 / indice);
             pantalla.setText(String.valueOf(resultado));
+            ultimoResultado = String.valueOf(resultado);
         } catch (Exception e) {
             pantalla.setText("Error");
         }
@@ -656,15 +852,6 @@ public class Controlador {
 
 
     public void ocultarSubmenus() {
-        // Ocultar submenús de matrices, ecuaciones, calculos y vectores.
-
-        // CALCULOS
-
-        // VECTORES
-
-        // MATRICES
-
-        // ECUACIONES
         btnSistema2x2.setVisible(false); btnSistema2x2.setManaged(false);
         btnSistema3x3.setVisible(false); btnSistema3x3.setManaged(false);
         ocultarCampos2x2();
@@ -724,7 +911,21 @@ public class Controlador {
                 break;
 
             case vectores:
+                String texto = pantalla.getText().replace(" ", "");
 
+                if (texto.contains("+")) {
+                    procesarcvecSR(texto, '+');
+                } else if (texto.contains("-")) {
+                    procesarcvecSR(texto, '-');
+                } else if (texto.contains("*")) {
+                    procesarvecE(texto);
+                } else if (texto.contains("·")) {
+                    procesarvecPE(texto);
+                } else if (texto.contains("x") || texto.contains("×")) {
+                    procesarvecPV(texto);
+                } else {
+                    salidadefinirmatrices.setText("Operación vectorial no reconocida.");
+                }
                 break;
 
             default:
@@ -733,17 +934,21 @@ public class Controlador {
         }
     }
 
-
-
-    private void procesarmatInv() {
+    private void procesarvecPV(String texto) {
     }
+
+    private void procesarvecPE(String texto) {
+    }
+
+    private void procesarvecE(String texto) {
+    }
+
+    private void procesarcvecSR(String texto, char c) {
+    }
+
 
     private void procesarmatDet() {
     }
-
-    private void procesarmatD() {
-    }
-
 
     public void initialize(){
         mostrarPanelA();
