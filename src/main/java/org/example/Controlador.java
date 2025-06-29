@@ -60,26 +60,34 @@ public class Controlador {
                         "1: MatrizA\n" +
                         "2: MatrizB\n" +
                         "3: MatrizC\n" +
-                        "4: MatrizD\n"
+                        "4: MatrizD\n" +
+                        "Ingrese por teclado qué matriz rellenará"
         );
         seleccionarmatriz(pantalla.getScene());
     }
 
     void seleccionarmatriz(Scene scene) { //Usamos el Scene porque vendria a ser una grabacion de la escena o pantalla que ve el usuario, se usa para esperar que este presione una tecla o haga algo, asi lo almacenamos/usamos
-        scene.setOnKeyPressed(keyEvent -> { //Dentro de la escena, pedimos la tecla o accion hecha, kayevent para indicar que al presionar se ejecuta lo siguiente
+        pantalla.setOnAction(e -> {
 
-                    switch (keyEvent.getCode()) { //Getcode pide el ascii de la tecla presionada, keyevent es el hecho de presionar la tecla
-                        case DIGIT1 -> definirMatriz("A");
-                        case DIGIT2 -> definirMatriz("B");
-                        case DIGIT3 -> definirMatriz("C");
-                        case DIGIT4 -> definirMatriz("D");
-                    }
+            try {
+                int valor = Integer.parseInt(pantalla.getText());
+                pantalla.clear();
+
+                switch (valor) {
+                    case 1 -> definirMatriz("A");
+                    case 2 -> definirMatriz("B");
+                    case 3 -> definirMatriz("C");
+                    case 4 -> definirMatriz("D");
                 }
-
-        );
+            } catch(NumberFormatException ex) {
+                salidadefinirmatrices.setText("Error");
+                pantalla.clear();
+            }
+        });
     }
 
     private void definirMatriz(String matrizid) { //DEFINIR DIMENSIONES
+
         matrizselec = matrizid;
         esperandoFilas = true;
 
@@ -94,6 +102,7 @@ public class Controlador {
                     salidadefinirmatrices.setText("Definir Matriz " + matrizid + "\nIngrese la cantidad de columnas:");
                 } else {
                     cmatriz = valor;
+                    salidadefinirmatrices.setText("Definir Matriz " + matrizid + "\n" );
                     pantalla.setOnAction(null);
                     crearmatriz(matrizid, fmatriz, cmatriz);
                 }
@@ -104,34 +113,42 @@ public class Controlador {
         });
     }
 
-    private void crearmatriz(String matrizid, int filas, int columnas) { //DEFINIR VALORES
+    private void crearmatriz(String matrizid, int filas, int columnas) {
         matriz = new int[filas][columnas];
         filaA = 0;
         columnaA = 0;
+
+        salidadefinirmatrices.setText("Ingrese el valor para la posición\n [1] [1]:");
+
         pantalla.setOnAction(e -> {
             try {
                 int valor = Integer.parseInt(pantalla.getText());
                 pantalla.clear();
 
                 matriz[filaA][columnaA] = valor;
+
                 columnaA++;
                 if (columnaA == columnas) {
                     columnaA = 0;
                     filaA++;
                 }
+
                 if (filaA == filas) {
                     matrices.put(matrizid, matriz);
                     pantalla.setOnAction(null);
+                    salidadefinirmatrices.setText("Matriz " + matrizid + " creada exitosamente.\n");
                     mostrarMatriz(matriz);
+                } else {
+                    salidadefinirmatrices.setText("Ingrese el valor para la posición:\n [" + (filaA + 1) + "] [" + (columnaA + 1) + "]:");
                 }
+
             } catch (NumberFormatException ex) {
-                salidadefinirmatrices.setText("Error");
+                salidadefinirmatrices.setText("Error: ingrese un número válido");
                 pantalla.clear();
             }
         });
-
-
     }
+
 
     private void mostrarMatriz(int[][] m) { //FUNCION DE PRUEBA
         StringBuilder sb = new StringBuilder("Matriz ingresada:\n");
