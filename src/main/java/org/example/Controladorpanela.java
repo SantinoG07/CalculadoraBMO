@@ -97,10 +97,18 @@ public class Controladorpanela {
     @FXML private void mbtnac() {
         if (pantalla != null) pantalla.clear();
     }
+    private Controlador controladorPadre;
 
-    @FXML private void mbtnresultado() {
-        // lógica futura
+    public void setControladorPadre(Controlador controlador) {
+        this.controladorPadre = controlador;
     }
+    @FXML
+    private void mbtnresultado() {
+        if (controladorPadre != null) {
+            controladorPadre.mbtnresultado();
+        }
+    }
+
 
     @FXML private void btnans() {
         // lógica futura

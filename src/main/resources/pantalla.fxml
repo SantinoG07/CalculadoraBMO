@@ -11,48 +11,45 @@
 
 <VBox prefHeight="908.0" prefWidth="1061.0" spacing="10" stylesheets="@estilo.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controlador">
    <children>
-      <Pane fx:id="mainPane" prefHeight="70.0" prefWidth="1061.0" styleClass="contenedor" stylesheets="@estilo.css" VBox.vgrow="ALWAYS">
+      <Pane fx:id="mainPane" prefHeight="908.0" prefWidth="1000.0" styleClass="contenedor" stylesheets="@estilo.css" VBox.vgrow="ALWAYS">
       <children>
-            <Label fx:id="modoleyenda" layoutX="400.0" layoutY="10.0" style="-fx-text-fill: gray; -fx-font-size: 100;" text="" />
+         <TextField fx:id="pantalla" layoutX="35.0" layoutY="65.0" prefHeight="108.0" prefWidth="572.0" styleClass="monitor" stylesheets="@estilo.css" />
+         <Label fx:id="modoleyenda" layoutX="60.0" layoutY="70.0" style="-fx-text-fill: gray; -fx-font-size: 30;" text="" />
             <Button fx:id="btnon" layoutX="959.0" layoutY="32.0" mnemonicParsing="false" onAction="#mbtnon" text="ON" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
             <TextArea fx:id="subMenu" layoutX="20.0" layoutY="260.0" managed="false" prefHeight="120" prefWidth="300" style="-fx-font-size:14;" visible="false" wrapText="true" />
-            <Label fx:id="salidadefinirmatrices" layoutX="400.0" layoutY="10.0" style="-fx-text-fill: gray; -fx-font-size: 40;" text="" />
-            <TextField fx:id="pantalla" layoutX="35.0" layoutY="31.0" prefHeight="108.0" prefWidth="256.0" styleClass="monitor" stylesheets="@estilo.css" />
+         <Label fx:id="salidadefinirmatrices" layoutX="35.0" layoutY="35.0" style="-fx-text-fill: gray; -fx-font-size: 20;" text="" />
 
 
-         <Button layoutX="566.0" layoutY="500.0" onAction="#mostrarPanelA" styleClass="numeros" text="Mostrar Panel A" />
-         <Button layoutX="735.0" layoutY="500.0" onAction="#mostrarPanelB" styleClass="numeros" text="Mostrar Panel B" />
 
-
-         <Button fx:id="vectores" id="btnvectores" layoutX="50.0" layoutY="288.0" mnemonicParsing="false" onAction="#mvectores" styleClass="calculo" stylesheets="@estilo.css" text="Vectores" textAlignment="CENTER">
+         <Button id="btnvectores" fx:id="vectores" layoutX="50.0" layoutY="740.0" mnemonicParsing="false" onAction="#mvectores" styleClass="calculo" stylesheets="@estilo.css" text="Vectores" textAlignment="CENTER">
             <font>
                <Font name="System Bold" size="12.0" />
             </font>
          </Button>
 
-         <Button fx:id="btnmatrices" id="btnmatrices" layoutX="170.0" layoutY="288.0" mnemonicParsing="false" onAction="#mmatrices" styleClass="calculo" text="Matrices" textAlignment="CENTER">
+         <Button id="btnmatrices" fx:id="btnmatrices" layoutX="170.0" layoutY="740.0" mnemonicParsing="false" onAction="#mmatrices" styleClass="calculo" text="Matrices" textAlignment="CENTER">
             <font>
                <Font name="System Bold" size="12.0" />
             </font>
          </Button>
 
-         <Button fx:id="btnecuaciones" layoutX="290.0" layoutY="288.0" styleClass="rombo" mnemonicParsing="false">
+         <Button fx:id="btnecuaciones" layoutX="290.0" layoutY="740.0" mnemonicParsing="false" styleClass="rombo">
             <graphic>
                <StackPane>
-                  <Label text="Ecuaciones" style="-fx-rotate: -45; -fx-text-fill: black; -fx-font-weight: bold;" />
+                  <Label style="-fx-rotate: -45; -fx-text-fill: black; -fx-font-weight: bold;" text="Ecuaciones" />
                </StackPane>
             </graphic>
          </Button>
 
-         <Button fx:id="btncalculos" layoutX="410.0" layoutY="288.0" mnemonicParsing="false" onAction="#mcalculos" styleClass="boton-triangulo" />
+         <Button fx:id="btncalculos" layoutX="410.0" layoutY="740.0" mnemonicParsing="false" onAction="#mcalculos" styleClass="boton-triangulo" />
 
 
 
-         <StackPane fx:id="contenedorVistas" layoutX="506.0" layoutY="35.0" prefHeight="285.0" prefWidth="400.0" styleClass="botones"/>
+         <StackPane fx:id="contenedorVistas" layoutX="1100" layoutY="30.0" prefHeight="320.0" prefWidth="600" styleClass="botones" />
 
          </children>
 

@@ -4,10 +4,10 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<?import javafx.scene.control.TextField?>
 <VBox xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="org.example.Controladorpanela"
-      spacing="10" alignment="CENTER">
+      spacing="10" alignment="CENTER" >
+
     <Button fx:id="btnmult" mnemonicParsing="false" onAction="#mbtnmult" styleClass="a" stylesheets="@estilo.css"
             text="X" textAlignment="CENTER"/>
 

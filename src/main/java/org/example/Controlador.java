@@ -28,6 +28,14 @@ public class Controlador {
     private TextArea subMenu;
 
 
+
+    private enum Modo {
+        vectores, matrices, ecuaciones, calculos
+    }
+    private Modo modoActual = Modo.calculos; // Por defecto
+
+
+
     /*#### Sistema de MATRICES ####*/
     /*Variables para matrices*/
     private String matrizselec;
@@ -41,16 +49,16 @@ public class Controlador {
     private int columnaA = 0;
 
     public void mmatrices() { //SUBMENU
+        modoActual = Modo.matrices;
         modoleyenda.setText("Modo matrices");
-        subMenu.setText(
+        salidadefinirmatrices.setText(
                 "Definir Matriz\n" +
                         "1: MatrizA\n" +
                         "2: MatrizB\n" +
                         "3: MatrizC\n" +
                         "4: MatrizD\n"
         );
-        subMenu.setVisible(true);
-        subMenu.setManaged(true);
+        seleccionarmatriz(pantalla.getScene());
     }
 
     void seleccionarmatriz(Scene scene) { //Usamos el Scene porque vendria a ser una grabacion de la escena o pantalla que ve el usuario, se usa para esperar que este presione una tecla o haga algo, asi lo almacenamos/usamos
@@ -159,25 +167,33 @@ public class Controlador {
 
 
     private void procesarmatS() {
-        String expresion  = pantalla.getText();
-        String[] mat= expresion.split("\\+"); //Convierte la expresion en una array con las matrices ingresadas
+        String expresion = pantalla.getText().replace(" ", ""); // eliminar espacios
+        String[] mat = expresion.split("\\+"); // dividir por el símbolo +
 
         List<int[][]> matricesasumar = new ArrayList<>();
 
-        for(String matri:mat){
-            String id = matri.replace("Matriz", ""); //Elimina matriz de la expresion, dejando solamente los id
+        for (String matri : mat) {
+            String id = matri.replace("Matriz", ""); // sacar el "Matriz"
+            if (!matrices.containsKey(id)) {
+                salidadefinirmatrices.setText("No existe la matriz " + id);
+                return;
+            }
             matricesasumar.add(matrices.get(id));
         }
-        int filas = matricesasumar.get(0).length; //Obtenemos las filas
-        int columnas = matricesasumar.get(0)[0].length;//Obtenemos las columnas
+
+        // Verificamos dimensiones iguales
+        int filas = matricesasumar.get(0).length;
+        int columnas = matricesasumar.get(0)[0].length;
+
         for (int[][] m : matricesasumar) {
             if (m.length != filas || m[0].length != columnas) {
                 salidadefinirmatrices.setText("Las matrices deben tener las mismas dimensiones.");
                 return;
             }
         }
-        int[][] resultado = new int[filas][columnas];
 
+        // Hacemos la suma
+        int[][] resultado = new int[filas][columnas];
         for (int[][] m : matricesasumar) {
             for (int i = 0; i < filas; i++) {
                 for (int j = 0; j < columnas; j++) {
@@ -185,9 +201,10 @@ public class Controlador {
                 }
             }
         }
-        mostrarMatriz(resultado);
 
+        mostrarMatriz(resultado); // Mostramos el resultado
     }
+
     private void procesarmatR() {
         String expresion  = pantalla.getText();
         String[] mat= expresion.split("\\-"); //Convierte la expresion en una array con las matrices ingresadas
@@ -267,8 +284,6 @@ public class Controlador {
 
 
     /*#### Sistema de ECUACIONES lineales ####*/
-
-
     @FXML private Button btnSistema2x2;
     @FXML private Button btnSistema3x3;
 
@@ -300,8 +315,8 @@ public class Controlador {
 
     @FXML
     public void mecuaciones() {
+        modoActual = Modo.ecuaciones;
         modoleyenda.setText("Modo ecuaciones");
-
 
         ocultarSubmenus();
 
@@ -490,9 +505,10 @@ public class Controlador {
             pantalla.setText("Error: Ingresá solo números válidos.");
         }
     }
-
-
     /*#### FIN ####*/
+
+
+
     /*#### Sistema de calculos ####*/
     private void procesarcalS() {
         try {
@@ -617,6 +633,9 @@ public class Controlador {
     /*#### FIN ####*/
 
 
+
+
+
     public void ocultarSubmenus() {
         // Ocultar submenús de matrices, ecuaciones, calculos y vectores.
 
@@ -633,60 +652,67 @@ public class Controlador {
         ocultarCampos3x3();
     }
     public void mcalculos() {
+        modoActual = Modo.calculos;
         modoleyenda.setText("Modo calculos");
 
 
-        ocultarSubmenus();
     }
 
 
 
 
     public void mbtnresultado() {
+        switch (modoActual) {
+            case calculos:
+                if (pantalla.getText().contains("-")) {
+                    procesarcalR();
+                } else if (pantalla.getText().contains("+")) {
+                    procesarcalS();
+                } else if (pantalla.getText().contains("/")) {
+                    procesarcalD();
+                } else if (pantalla.getText().contains("*")) {
+                    procesarcalM();
+                } else if (pantalla.getText().contains("√")) {
+                    procesarcalRaiz();
+                } else if (pantalla.getText().contains("^")) {
+                    procesarcalP();
+                }
+                break;
 
+            case matrices:
+                if (pantalla.getText().contains("-")) {
+                    procesarmatR();
+                } else if (pantalla.getText().contains("+")) {
+                    procesarmatS();
+                } else if (pantalla.getText().contains("/")) {
+                    procesarmatD();
+                } else if (pantalla.getText().contains("*")) {
+                    procesarmatM();
+                } else if (pantalla.getText().contains("Det(")) {
+                    procesarmatDet();
+                } else if (pantalla.getText().contains("Inv(")) {
+                    procesarmatInv();
+                }
+                break;
 
-        if(modoleyenda.getText() == "Modo calculo"){
-            if(pantalla.getText().contains("-")){
-            procesarcalR();
-        }else if(pantalla.getText().contains("+")){
-            procesarcalS();
-        }else if(pantalla.getText().contains("/")){
-            procesarcalD();
-        }else if(pantalla.getText().contains("*")){
-            procesarcalM();
-        }else if(pantalla.getText().contains("√")){
-            procesarcalRaiz();
-        }else if(pantalla.getText().contains("^")){
-            procesarcalP();
-        }
+            case ecuaciones:
+                if (sis2x2) {
+                    resolverSistema2x2();
+                } else {
+                    resolverSistema3x3();
+                }
+                break;
 
-        }else if(modoleyenda.getText()=="Modo vectores"){
+            case vectores:
 
-        } else if(modoleyenda.getText()=="Modo matrices"){
-            if(pantalla.getText().contains("-")){
-                procesarmatR();
-            }else if(pantalla.getText().contains("+")){
-                procesarmatS();
-            }else if(pantalla.getText().contains("/")){
-                procesarmatD();
-            }else if(pantalla.getText().contains("*")){
-                procesarmatM();
-            }else if(pantalla.getText().contains("Det(")){
-                procesarmatDet();
-            }else if(pantalla.getText().contains("Inv(")){
-                procesarmatInv();
-            }
+                break;
 
-        }else if(modoleyenda.getText()=="Modo ecuaciones"){
-
-            if(sis2x2){
-                resolverSistema2x2();
-            } else {
-                resolverSistema3x3();
-            }
-
+            default:
+                pantalla.setText("Modo no reconocido");
+                break;
         }
     }
+
 
 
     private void procesarmatInv() {
@@ -707,10 +733,17 @@ public class Controlador {
 
 
     public void mvectores(ActionEvent actionEvent) {
+        modoActual = Modo.vectores;
+        modoleyenda.setText("Modo vectores");
+        ocultarSubmenus();
     }
 
 
 
+
+
+
+    /*##Manejo de los paneles##*/
     @FXML
     private StackPane contenedorVistas;
 
@@ -728,6 +761,8 @@ public class Controlador {
 
                 Controladorpanela controladorPanelA = loader.getController();
                 controladorPanelA.setPantalla(pantalla);
+                controladorPanelA.setControladorPadre(this);
+
 
                 System.out.println("panel_a cargado: " + panel_a);
             }

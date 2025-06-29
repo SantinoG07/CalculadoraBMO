@@ -1,7 +1,7 @@
 /* CONTENEDOR PRINCIPAL */
 .contenedor {
-    -fx-pref-width: 850;
-    -fx-pref-height: 450;
+    -fx-pref-width: 100%;
+    -fx-pref-height: 100%;
     -fx-background-color: #23895A;
     -fx-border-color: black;
     -fx-border-width: 5;
@@ -28,8 +28,8 @@
 
 /* MONITOR */
 .monitor {
-    -fx-pref-width: 450;
-    -fx-pref-height: 200;
+    -fx-pref-width: 1000;
+    -fx-pref-height: 500;
     -fx-background-color: #9de3c5;
     -fx-background-radius: 10;
     -fx-border-color: black;
@@ -52,7 +52,7 @@
 }
 
 /* PANEL DE BOTONES */
-.botones {
+        .botones {
     -fx-background-color: #66a07f;
     -fx-pref-height: 300;
     -fx-background-radius: 10;
@@ -148,62 +148,70 @@
     -fx-background-color: darkgoldenrod;
 }
 
+
 /* === BOTONES DE MODO === */
 #btnvectores {
     -fx-background-color: red;
-    -fx-background-radius: 40;
-    -fx-border-radius: 40;
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
     -fx-border-color: black;
-    -fx-border-width: 4;
+    -fx-border-width: 5;
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-font-size: 14px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0.5, 0, 2);
+    -fx-font-size: 17.5px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 6.25, 0.625, 0, 2.5);
+    -fx-pref-width: 100px;
+    -fx-pref-height: 100px;
 }
+
 #btnmatrices {
-    -fx-background-color: #58d68d; /* verde menta */
-    -fx-background-radius: 20;
-    -fx-font-size: 14px;
+    -fx-background-color: #58d68d;
+    -fx-background-radius: 25;
+    -fx-font-size: 20px;
     -fx-text-fill: black;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 100px;
+    -fx-padding: 10 20 10 20;
 }
+
 
 #btnecuaciones {
     -fx-background-color: goldenrod;
-    -fx-background-radius: 10;
+    -fx-background-radius: 12.5;
     -fx-border-color: black;
-    -fx-border-width: 3;
+    -fx-border-width: 3.75;
     -fx-rotate: 45;
-    -fx-pref-width: 80px;
-    -fx-pref-height: 80px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 5, 0.5, 0, 2);
+    -fx-pref-width: 100px;
+    -fx-pref-height: 100px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 6.25, 0.625, 0, 2.5);
     -fx-padding: 0;
 }
 
-
 #btncalculos {
     -fx-background-color: #5dade2;
-    -fx-background-radius: 40;
-    -fx-border-radius: 40;
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
     -fx-border-color: black;
-    -fx-border-width: 4;
+    -fx-border-width: 5;
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-font-size: 14px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0.5, 0, 2);
+    -fx-font-size: 17.5px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 6.25, 0.625, 0, 2.5);
+    -fx-pref-width: 100px;
+    -fx-pref-height: 100px;
 }
 
 .boton-triangulo {
     -fx-background-color: transparent;
     -fx-padding: 0;
     -fx-border-color: transparent;
-    -fx-shape: "M 0 80 L 40 0 L 80 80 Z"; /* path SVG para triángulo */
+    -fx-shape: "M 0 100 L 50 0 L 100 100 Z";
     -fx-background-color: gold;
     -fx-border-color: black;
-    -fx-border-width: 3;
+    -fx-border-width: 3.75;
     -fx-text-fill: black;
     -fx-font-weight: bold;
     -fx-alignment: center;
-    -fx-min-width: 80px;
-    -fx-min-height: 80px;
+    -fx-min-width: 100px;
+    -fx-min-height: 100px;
 }
-
