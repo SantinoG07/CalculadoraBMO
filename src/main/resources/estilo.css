@@ -1,7 +1,15 @@
+/* === FUENTE GENERAL Y LEGIBILIDAD === */
+.root {
+    -fx-font-size: 12px;
+    -fx-text-fill: black;
+    -fx-font-family: "Arial";
+    -fx-font-weight: normal;
+}
+
 /* CONTENEDOR PRINCIPAL */
 .contenedor {
-    -fx-pref-width: 100%;
-    -fx-pref-height: 100%;
+    -fx-pref-width: 1000;
+    -fx-pref-height:1000;
     -fx-background-color: #23895A;
     -fx-border-color: black;
     -fx-border-width: 5;
@@ -28,13 +36,14 @@
 
 /* MONITOR */
 .monitor {
-    -fx-pref-width: 1000;
+    -fx-pref-width: 700;
     -fx-pref-height: 500;
     -fx-background-color: #9de3c5;
     -fx-background-radius: 10;
     -fx-border-color: black;
     -fx-border-width: 4;
     -fx-border-radius: 10;
+    -fx-translate-x:30;
 }
 
 /* INSERCIÓN NEGRA */
@@ -42,7 +51,6 @@
     -fx-background-color: black;
     -fx-pref-width: 400;
     -fx-pref-height: 15;
-    -fx-margin: 0 30 0 30; /* No se aplica directamente en JavaFX */
 }
 
 /* SECCIÓN CALCULADORA */
@@ -52,13 +60,15 @@
 }
 
 /* PANEL DE BOTONES */
-        .botones {
+.botones {
     -fx-background-color: #66a07f;
-    -fx-pref-height: 300;
+    -fx-pref-height: 500;
+    -fx-pref-width:330;
     -fx-background-radius: 10;
     -fx-border-color: black;
     -fx-border-width: 4;
     -fx-border-radius: 10;
+    -fx-translate-y: 35;
 }
 
 /* FILA DE BOTONES NUMÉRICOS */
@@ -79,7 +89,6 @@
 #basicas {
     -fx-background-color: transparent;
     -fx-padding: 0;
-    /* JavaFX no soporta bordes triangulares directamente */
 }
 
 /* IMAGEN EN BASICAS */
@@ -134,30 +143,27 @@
     -fx-pref-height: 40;
     -fx-border-color: black;
     -fx-border-width: 4;
-    -fx-background-color:gold;
+    -fx-background-color: gold;
     -fx-background-radius: 30;
     -fx-border-radius: 30;
 }
-
 
 /* FONDOS DE BOTONES DE SIGNOS */
 #signos {
     -fx-background-color: darkgoldenrod;
 }
 
-
 .panel-boton {
     -fx-background-color: #74ac94;
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-font-size: 14px;
+    -fx-font-size: 13px;
     -fx-padding: 8 9 8 9;
     -fx-border-radius: 5;
     -fx-background-radius: 5;
-    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.25) , 3,0,0,1 );
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 3, 0, 0, 1);
     -fx-cursor: hand;
 }
-
 
 /* === BOTONES DE MODO === */
 #btnvectores {
@@ -166,9 +172,9 @@
     -fx-border-radius: 50;
     -fx-border-color: black;
     -fx-border-width: 5;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-font-weight: bold;
-    -fx-font-size: 17.5px;
+    -fx-font-size: 15px;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 6.25, 0.625, 0, 2.5);
     -fx-pref-width: 100px;
     -fx-pref-height: 100px;
@@ -177,13 +183,12 @@
 #btnmatrices {
     -fx-background-color: #58d68d;
     -fx-background-radius: 25;
-    -fx-font-size: 20px;
+    -fx-font-size: 13px;
     -fx-text-fill: black;
     -fx-pref-width: 100px;
     -fx-pref-height: 100px;
     -fx-padding: 10 20 10 20;
 }
-
 
 #btnecuaciones {
     -fx-background-color: goldenrod;
@@ -203,25 +208,28 @@
     -fx-border-radius: 50;
     -fx-border-color: black;
     -fx-border-width: 5;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-font-weight: bold;
-    -fx-font-size: 17.5px;
+    -fx-font-size: 13px;
+    -fx-translate-y: 6;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 6.25, 0.625, 0, 2.5);
-    -fx-pref-width: 100px;
-    -fx-pref-height: 100px;
+    -fx-pref-width: 120px;
+    -fx-pref-height: 120px;
 }
 
+
+
+
 .boton-triangulo {
-    -fx-background-color: transparent;
-    -fx-padding: 0;
-    -fx-border-color: transparent;
-    -fx-shape: "M 0 100 L 50 0 L 100 100 Z";
     -fx-background-color: gold;
     -fx-border-color: black;
     -fx-border-width: 3.75;
     -fx-text-fill: black;
     -fx-font-weight: bold;
     -fx-alignment: center;
+    -fx-shape: "M 0 100 L 50 0 L 100 100 Z";
     -fx-min-width: 100px;
     -fx-min-height: 100px;
+    -fx-background-radius: 0;
+    -fx-padding: 0;
 }

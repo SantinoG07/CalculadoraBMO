@@ -1,33 +1,35 @@
-package org.example;
+    package org.example;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+    import javafx.application.Application;
+    import javafx.fxml.FXMLLoader;
+    import javafx.scene.Parent;
+    import javafx.scene.Scene;
+    import javafx.stage.Stage;
 
-import java.util.Objects;
+    import java.util.Objects;
 
-public class App extends Application {
+    public class App extends Application {
 
-    @Override
-    public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pantalla.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root, 400, 200);
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/estilo.css")).toExternalForm());
+        @Override
+        public void start(Stage stage) throws Exception {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/pantalla.fxml"));
+            Parent root = loader.load();
 
-        Controlador controlador = loader.getController();
-        controlador.seleccionarmatriz(scene);
 
-        stage.setScene(scene);
-        stage.setTitle("BMO-Calculator");
-        stage.setMaximized(true);
+            Scene scene = new Scene(root, 1400, 900);
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/estilo.css")).toExternalForm());
 
-        stage.show();
+            Controlador controlador = loader.getController();
+            stage.setResizable(false);
+
+            controlador.seleccionarmatriz(scene);
+
+            stage.setScene(scene);
+
+            stage.sizeToScene();
+
+
+            stage.setTitle("BMO-Calculator");
+            stage.show();
+        }
     }
-
-    public static void main(String[] args) {
-        launch();
-    }
-}

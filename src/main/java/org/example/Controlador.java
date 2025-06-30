@@ -51,6 +51,8 @@ public class Controlador {
     private int columnaA = 0;
 
     public void mmatrices() { //SUBMENU
+        ocultarSubmenus();
+        pantalla.clear();
         salidadefinirmatrices.setText("");
         modoActual = Modo.matrices;
         modoleyenda.setText("Modo matrices");
@@ -541,6 +543,7 @@ public class Controlador {
     @FXML
     public void mecuaciones() {
         salidadefinirmatrices.setText("");
+        pantalla.clear();
         modoActual = Modo.ecuaciones;
         modoleyenda.setText("Modo ecuaciones");
 
@@ -877,6 +880,8 @@ public class Controlador {
         ocultarCampos3x3();
     }
     public void mcalculos() {
+        ocultarSubmenus();
+        pantalla.clear();
         salidadefinirmatrices.setText("");
         modoActual = Modo.calculos;
         modoleyenda.setText("Modo calculos");
@@ -965,6 +970,7 @@ public class Controlador {
 
     public void mvectores() { //SUBMENU
         salidadefinirmatrices.setText("");
+        pantalla.clear();
         modoActual = Modo.vectores;
         modoleyenda.setText("Modo vectores");
         ocultarSubmenus();
@@ -1229,6 +1235,11 @@ public class Controlador {
         }
 
     }
+
+    public void mprodvect() {
+            pantalla.setText(pantalla.getText() + "x");
+    }
+
     void mvec2() {
         if (vector.containsKey("B")) {
             pantalla.setText(pantalla.getText() + "VectorB");

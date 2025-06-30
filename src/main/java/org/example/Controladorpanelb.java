@@ -107,4 +107,10 @@ public class Controladorpanelb {
             controladorPadre.mvec4();
         }
     }
+
+    public void mprodvect(ActionEvent actionEvent) {
+        if (controladorPadre != null) {
+            controladorPadre.mprodvect();
+        }
+    }
 }

@@ -3,7 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane prefHeight="458.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controladorpanelb">
+<Pane prefHeight="600.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controladorpanelb">
 
 
 
@@ -18,6 +18,8 @@
     <Button layoutX="100.0" layoutY="120.0" styleClass="panel-boton" stylesheets="@estilo.css" onAction="#mvec3" text="VectorC"
             textAlignment="CENTER"/>
     <Button layoutX="100.0" layoutY="170.0" styleClass="panel-boton" stylesheets="@estilo.css" onAction="#mvec4" text="VectorC"
+            textAlignment="CENTER"/>
+    <Button layoutY="220.0" layoutX="100.0" styleClass="panel-boton" stylesheets="@estilo.css" onAction="#mprodvect" text="x"
             textAlignment="CENTER"/>
 
 
